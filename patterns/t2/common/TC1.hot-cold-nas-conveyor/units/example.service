@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Hot/Cold NAS Conveyor
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern TC1.hot-cold-nas-conveyor'

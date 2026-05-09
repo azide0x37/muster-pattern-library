@@ -1,0 +1,29 @@
+id: R3.cgroup-governor
+name: Cgroup Governor
+tech_level: 1
+rarity: rare
+mrl: 6
+summary: >
+  Constrain CPU, memory, IO, and restart behavior so one bad citizen cannot take down a small appliance.
+provides:
+  - resource_governance
+requires:
+  - systemd.service
+  - cgroups
+subpatterns:[]
+composes_with:
+  - C1.service-capsule
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Temporal Sheaf
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern M5.temporal-sheaf'

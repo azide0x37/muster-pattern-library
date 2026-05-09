@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Local Truth Sheaf
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern M1.local-truth-sheaf'

@@ -1,0 +1,30 @@
+id: R5.capability-mount
+name: Capability Mount
+tech_level: 1
+rarity: rare
+mrl: 5
+summary: >
+  Treat access to a resource such as NAS, secrets, cameras, or media as a capability with explicit ownership.
+provides:
+  - resource_capability
+requires:
+  - systemd.mount
+  - credentials
+subpatterns:[]
+composes_with:
+  - C4.lazy-resource-gate
+  - C5.failure-ratchet
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,23 @@
+id: C1.example-pattern
+name: Example Pattern
+tech_level: 1
+rarity: common
+mrl: 9
+summary: >
+  Replace this with a one-paragraph operational summary.
+provides:
+  - example_capability
+requires:
+  - systemd
+subpatterns: []
+composes_with: []
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Persistent Tick
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern C2.persistent-tick'

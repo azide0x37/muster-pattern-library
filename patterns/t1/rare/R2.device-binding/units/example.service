@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Device Binding
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern R2.device-binding'

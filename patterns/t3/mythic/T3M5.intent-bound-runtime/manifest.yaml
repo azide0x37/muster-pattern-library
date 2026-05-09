@@ -1,0 +1,34 @@
+id: T3M5.intent-bound-runtime
+name: Intent-Bound Runtime
+tech_level: 3
+rarity: mythic
+mrl: 2
+summary: >
+  Declare desired operational intent and let a disciplined runtime choose the service graph that satisfies it.
+provides:
+  - intent_to_runtime_graph
+requires:
+  - M4.local-topos-runtime
+  - M5.temporal-sheaf
+  - TR3.edge-control-plane
+  - R5.capability-mount
+subpatterns:
+  - M4.local-topos-runtime
+  - M5.temporal-sheaf
+  - TR3.edge-control-plane
+  - R5.capability-mount
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

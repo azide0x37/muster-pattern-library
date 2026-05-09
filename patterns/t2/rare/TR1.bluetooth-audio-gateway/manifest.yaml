@@ -1,0 +1,36 @@
+id: TR1.bluetooth-audio-gateway
+name: Bluetooth Audio Gateway
+tech_level: 2
+rarity: rare
+mrl: 6
+summary: >
+  Monitor a specific Bluetooth speaker, reconnect it, route audio, and expose honest state to a local control plane.
+provides:
+  - bluetooth_audio_path
+  - audio_gateway_status
+requires:
+  - TC4.self-healing-reconnector
+  - TC5.local-sidecar-bridge
+  - R2.device-binding
+  - R4.state-ledger
+subpatterns:
+  - TC4.self-healing-reconnector
+  - TC5.local-sidecar-bridge
+  - R2.device-binding
+  - R4.state-ledger
+composes_with:
+  - T3R1.multi-resource-orchestrator
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

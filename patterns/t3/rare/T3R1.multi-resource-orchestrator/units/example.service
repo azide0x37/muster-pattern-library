@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Multi-Resource Orchestrator
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern T3R1.multi-resource-orchestrator'

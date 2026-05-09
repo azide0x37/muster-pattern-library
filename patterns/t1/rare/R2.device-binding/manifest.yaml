@@ -1,0 +1,31 @@
+id: R2.device-binding
+name: Device Binding
+tech_level: 1
+rarity: rare
+mrl: 6
+summary: >
+  Attach service lifetime to the presence of a USB, serial, Bluetooth, camera, or other local device.
+provides:
+  - device_scoped_lifetime
+requires:
+  - udev
+  - systemd.device
+  - systemd.service
+subpatterns:[]
+composes_with:
+  - C1.service-capsule
+  - C5.failure-ratchet
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

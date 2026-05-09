@@ -1,0 +1,28 @@
+id: M2.holonomy-detector
+name: Holonomy Detector
+tech_level: 1
+rarity: mythic
+mrl: 4
+summary: >
+  Run a loop through expected states and detect whether the system actually returns to identity.
+provides:
+  - drift_detection
+  - loop_probe
+requires:
+  - runtime_facts
+subpatterns:[]
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

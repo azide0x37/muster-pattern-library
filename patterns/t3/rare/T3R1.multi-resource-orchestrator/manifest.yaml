@@ -1,0 +1,40 @@
+id: T3R1.multi-resource-orchestrator
+name: Multi-Resource Orchestrator
+tech_level: 3
+rarity: rare
+mrl: 5
+summary: >
+  Manage several flaky physical resources as one composed appliance with explicit ownership, degradation, and partial restart policy.
+provides:
+  - resource_ownership
+  - degraded_state_model
+requires:
+  - T3C1.edge-appliance-bundle
+  - TR1.bluetooth-audio-gateway
+  - TR2.lazy-capability-media-bus
+  - TR3.edge-control-plane
+  - R2.device-binding
+  - R4.state-ledger
+subpatterns:
+  - T3C1.edge-appliance-bundle
+  - TR1.bluetooth-audio-gateway
+  - TR2.lazy-capability-media-bus
+  - TR3.edge-control-plane
+  - R2.device-binding
+  - R4.state-ledger
+composes_with:
+  - T3M1.machine-priest
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

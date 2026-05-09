@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Validate pattern manifests
+        run: uv run python tools/validate_patterns.py
+      - name: Check composition rules
+        run: uv run python tools/check_composition_rules.py
+      - name: Check generated docs
+        run: |
+          uv run python tools/render_index.py --check
+          uv run python tools/render_graph.py --check
+      - name: Run unit tests
+        run: uv run python -m unittest discover tests

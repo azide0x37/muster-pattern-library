@@ -1,0 +1,35 @@
+id: TC1.hot-cold-nas-conveyor
+name: Hot/Cold NAS Conveyor
+tech_level: 2
+rarity: common
+mrl: 8
+summary: >
+  Keep hot local storage responsive while lazily moving cold output to NAS or other network storage.
+provides:
+  - hot_cold_storage_flow
+requires:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C4.lazy-resource-gate
+  - C5.failure-ratchet
+subpatterns:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C4.lazy-resource-gate
+  - C5.failure-ratchet
+composes_with:
+  - T3C1.edge-appliance-bundle
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

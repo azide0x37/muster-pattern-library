@@ -1,0 +1,31 @@
+id: C2.persistent-tick
+name: Persistent Tick
+tech_level: 1
+rarity: common
+mrl: 9
+summary: >
+  Run recurring jobs with a timer that catches up after downtime and reports failure through a bounded oneshot service.
+provides:
+  - recurring_job
+  - downtime_catchup
+requires:
+  - systemd.timer
+  - systemd.service
+subpatterns:[]
+composes_with:
+  - C1.service-capsule
+  - C5.failure-ratchet
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,35 @@
+id: T3M1.machine-priest
+name: Machine Priest
+tech_level: 3
+rarity: mythic
+mrl: 3
+summary: >
+  Interpret local operational facts into a canonical truth document that can explain healthy, degraded, unsafe, or unknown state.
+provides:
+  - canonical_machine_truth
+  - recommended_action
+requires:
+  - T3C1.edge-appliance-bundle
+  - T3R1.multi-resource-orchestrator
+  - M1.local-truth-sheaf
+  - M5.temporal-sheaf
+subpatterns:
+  - T3C1.edge-appliance-bundle
+  - T3R1.multi-resource-orchestrator
+  - M1.local-truth-sheaf
+  - M5.temporal-sheaf
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Self-Healing Reconnector
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern TC4.self-healing-reconnector'

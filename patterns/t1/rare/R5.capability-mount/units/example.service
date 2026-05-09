@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Capability Mount
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern R5.capability-mount'

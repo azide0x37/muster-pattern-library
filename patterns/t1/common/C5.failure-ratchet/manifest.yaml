@@ -1,0 +1,30 @@
+id: C5.failure-ratchet
+name: Failure Ratchet
+tech_level: 1
+rarity: common
+mrl: 7
+summary: >
+  Turn service failure into a first-class event that can log, notify, quarantine, retry, or degrade deliberately.
+provides:
+  - failure_event
+  - recovery_entrypoint
+requires:
+  - systemd.service
+subpatterns:[]
+composes_with:
+  - C1.service-capsule
+  - C2.persistent-tick
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

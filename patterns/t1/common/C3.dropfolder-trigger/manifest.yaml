@@ -1,0 +1,30 @@
+id: C3.dropfolder-trigger
+name: Dropfolder Trigger
+tech_level: 1
+rarity: common
+mrl: 8
+summary: >
+  React to files appearing in a watched folder and hand them to a safe processing service.
+provides:
+  - filesystem_event_processing
+requires:
+  - systemd.path
+  - systemd.service
+subpatterns:[]
+composes_with:
+  - C1.service-capsule
+  - C5.failure-ratchet
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

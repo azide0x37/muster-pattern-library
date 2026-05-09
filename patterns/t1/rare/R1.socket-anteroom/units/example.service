@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Socket Anteroom
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern R1.socket-anteroom'

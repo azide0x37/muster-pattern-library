@@ -1,0 +1,30 @@
+id: C4.lazy-resource-gate
+name: Lazy Resource Gate
+tech_level: 1
+rarity: common
+mrl: 8
+summary: >
+  Materialize a mount or network resource only when touched so boot does not depend on flaky external infrastructure.
+provides:
+  - lazy_resource
+  - boot_safe_mount
+requires:
+  - systemd.automount
+  - systemd.mount
+subpatterns:[]
+composes_with:
+  - C5.failure-ratchet
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Holonomic Watchdog
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern T3M4.holonomic-watchdog'

@@ -1,0 +1,36 @@
+id: T3M2.ritualized-recovery-loop
+name: Ritualized Recovery Loop
+tech_level: 3
+rarity: mythic
+mrl: 4
+summary: >
+  Turn recovery into a staged sequence: observe, isolate, reset, rebind, validate, and rejoin.
+provides:
+  - staged_recovery
+requires:
+  - C5.failure-ratchet
+  - TC4.self-healing-reconnector
+  - R4.state-ledger
+  - M2.holonomy-detector
+  - M5.temporal-sheaf
+subpatterns:
+  - C5.failure-ratchet
+  - TC4.self-healing-reconnector
+  - R4.state-ledger
+  - M2.holonomy-detector
+  - M5.temporal-sheaf
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

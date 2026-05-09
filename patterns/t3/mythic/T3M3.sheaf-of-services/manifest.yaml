@@ -1,0 +1,34 @@
+id: T3M3.sheaf-of-services
+name: Sheaf of Services
+tech_level: 3
+rarity: mythic
+mrl: 2
+summary: >
+  Have services report local facts and let a gluing layer decide whether they form a coherent global machine state.
+provides:
+  - global_state_gluing
+requires:
+  - M1.local-truth-sheaf
+  - M3.simplicial-task-graph
+  - TR3.edge-control-plane
+  - TC3.scheduled-herald
+subpatterns:
+  - M1.local-truth-sheaf
+  - M3.simplicial-task-graph
+  - TR3.edge-control-plane
+  - TC3.scheduled-herald
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

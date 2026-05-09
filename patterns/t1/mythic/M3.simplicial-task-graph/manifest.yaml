@@ -1,0 +1,27 @@
+id: M3.simplicial-task-graph
+name: Simplicial Task Graph
+tech_level: 1
+rarity: mythic
+mrl: 3
+summary: >
+  Model target states as filled dependency shapes where missing faces explain why the desired state cannot exist.
+provides:
+  - explainable_dependency_state
+requires:
+  - dependency_model
+subpatterns:[]
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,38 @@
+id: T3C1.edge-appliance-bundle
+name: Edge Appliance Bundle
+tech_level: 3
+rarity: common
+mrl: 7
+summary: >
+  Turn a Raspberry Pi or similar host into a respectable local appliance with storage, status, recovery, and sidecar behavior.
+provides:
+  - local_appliance
+  - health_report
+  - recoverable_runtime
+requires:
+  - TC1.hot-cold-nas-conveyor
+  - TC3.scheduled-herald
+  - TC4.self-healing-reconnector
+  - TC5.local-sidecar-bridge
+subpatterns:
+  - TC1.hot-cold-nas-conveyor
+  - TC3.scheduled-herald
+  - TC4.self-healing-reconnector
+  - TC5.local-sidecar-bridge
+composes_with:
+  - T3R1.multi-resource-orchestrator
+  - T3M1.machine-priest
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

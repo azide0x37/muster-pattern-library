@@ -1,0 +1,27 @@
+id: M4.local-topos-runtime
+name: Local Topos Runtime
+tech_level: 1
+rarity: mythic
+mrl: 2
+summary: >
+  Treat targets as propositions, services as proofs, and observed paths or devices as evidence for valid local state.
+provides:
+  - operational_logic
+requires:
+  - state_model
+subpatterns:[]
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

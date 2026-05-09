@@ -1,0 +1,29 @@
+id: M5.temporal-sheaf
+name: Temporal Sheaf
+tech_level: 1
+rarity: mythic
+mrl: 3
+summary: >
+  Glue persistent timers, snapshots, and boot/session facts so machines remember obligations across downtime.
+provides:
+  - temporal_state
+  - downtime_memory
+requires:
+  - persistent_timers
+  - runtime_snapshots
+subpatterns:[]
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

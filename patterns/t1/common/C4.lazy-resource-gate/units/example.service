@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Lazy Resource Gate
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern C4.lazy-resource-gate'

@@ -1,0 +1,30 @@
+id: R4.state-ledger
+name: State Ledger
+tech_level: 1
+rarity: rare
+mrl: 6
+summary: >
+  Make services explain themselves through journald and small runtime JSON facts under `/run/muster`.
+provides:
+  - runtime_facts
+  - operator_status
+requires:
+  - journald
+  - runtime_directory
+subpatterns:[]
+composes_with:
+  - TC3.scheduled-herald
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Simplicial Task Graph
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern M3.simplicial-task-graph'

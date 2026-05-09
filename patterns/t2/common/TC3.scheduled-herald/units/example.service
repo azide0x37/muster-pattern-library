@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Scheduled Herald
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern TC3.scheduled-herald'

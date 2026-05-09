@@ -1,0 +1,28 @@
+id: M1.local-truth-sheaf
+name: Local Truth Sheaf
+tech_level: 1
+rarity: mythic
+mrl: 4
+summary: >
+  Have each unit report local truth and use a reducer to decide whether those facts glue into coherent machine state.
+provides:
+  - local_truth
+  - state_reducer
+requires:
+  - runtime_facts
+subpatterns:[]
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

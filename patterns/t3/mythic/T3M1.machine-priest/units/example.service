@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Machine Priest
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern T3M1.machine-priest'

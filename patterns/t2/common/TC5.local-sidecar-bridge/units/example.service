@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Local Sidecar Bridge
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern TC5.local-sidecar-bridge'

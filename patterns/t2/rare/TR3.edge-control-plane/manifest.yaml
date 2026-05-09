@@ -1,0 +1,39 @@
+id: TR3.edge-control-plane
+name: Edge Control Plane
+tech_level: 2
+rarity: rare
+mrl: 5
+summary: >
+  Combine watched jobs, device binding, socket activation, status ledgers, and outward state publishing for a Pi-local machine plane.
+provides:
+  - edge_control_plane
+requires:
+  - TC2.dropfolder-spooler
+  - TC3.scheduled-herald
+  - TC5.local-sidecar-bridge
+  - R1.socket-anteroom
+  - R2.device-binding
+  - R4.state-ledger
+subpatterns:
+  - TC2.dropfolder-spooler
+  - TC3.scheduled-herald
+  - TC5.local-sidecar-bridge
+  - R1.socket-anteroom
+  - R2.device-binding
+  - R4.state-ledger
+composes_with:
+  - T3R1.multi-resource-orchestrator
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

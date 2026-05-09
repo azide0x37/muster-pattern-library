@@ -1,0 +1,34 @@
+id: T3M4.holonomic-watchdog
+name: Holonomic Watchdog
+tech_level: 3
+rarity: mythic
+mrl: 3
+summary: >
+  Periodically walk a loop through expected states and detect whether the machine returns to identity.
+provides:
+  - watchdog_drift_loop
+requires:
+  - M2.holonomy-detector
+  - TC3.scheduled-herald
+  - TC4.self-healing-reconnector
+  - R4.state-ledger
+subpatterns:
+  - M2.holonomy-detector
+  - TC3.scheduled-herald
+  - TC4.self-healing-reconnector
+  - R4.state-ledger
+composes_with:[]
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

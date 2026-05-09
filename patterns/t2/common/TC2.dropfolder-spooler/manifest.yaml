@@ -1,0 +1,33 @@
+id: TC2.dropfolder-spooler
+name: Dropfolder Spooler
+tech_level: 2
+rarity: common
+mrl: 8
+summary: >
+  Claim, process, and sort inbound files from a watched folder into done, failed, and log locations.
+provides:
+  - spooler_lifecycle
+requires:
+  - C1.service-capsule
+  - C3.dropfolder-trigger
+  - C5.failure-ratchet
+subpatterns:
+  - C1.service-capsule
+  - C3.dropfolder-trigger
+  - C5.failure-ratchet
+composes_with:
+  - TR3.edge-control-plane
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

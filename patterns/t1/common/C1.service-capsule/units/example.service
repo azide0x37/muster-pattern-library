@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Service Capsule
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern C1.service-capsule'

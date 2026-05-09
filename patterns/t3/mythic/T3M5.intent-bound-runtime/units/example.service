@@ -1,0 +1,7 @@
+[Unit]
+Description=Muster example for Intent-Bound Runtime
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo muster pattern T3M5.intent-bound-runtime'
