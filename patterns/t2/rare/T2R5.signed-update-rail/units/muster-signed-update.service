@@ -1,0 +1,18 @@
+[Unit]
+Description=Muster signed update rail
+Documentation=file:README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/muster/signed-update.env
+ExecStart=/usr/local/lib/muster/signed-update-rail/update.sh
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt /etc/muster /var/lib/muster /run/muster
+
+[Install]
+WantedBy=multi-user.target

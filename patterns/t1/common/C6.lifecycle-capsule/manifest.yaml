@@ -1,0 +1,47 @@
+id: C6.lifecycle-capsule
+name: Lifecycle Capsule
+tech_level: 1
+rarity: common
+mrl: 8
+summary: >
+  Install, verify, roll back, and cleanly uninstall one reviewed artifact bundle using a staged root, versioned release directory, current pointer, and preserved configuration.
+provides:
+  - managed_lifecycle
+  - idempotent_install
+  - doctor_gate
+  - clean_uninstall
+requires:
+  - systemd
+  - posix_shell
+subpatterns: []
+composes_with:
+  - T2R5.signed-update-rail
+lifecycle:
+  managed: true
+  install_modes:
+    - dry_run
+    - staged_root
+    - apply
+  doctor_modes:
+    - mock
+    - staged_root
+  rollback: artifact_generation
+  uninstall: artifacts_only
+  update: none
+artifacts:
+  units:
+    - units/example.service
+  scripts:
+    - scripts/lifecycle-run.sh
+    - scripts/install.sh
+    - scripts/doctor.sh
+    - scripts/rollback.sh
+    - scripts/uninstall.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

@@ -458,6 +458,15 @@ provides:{yaml_list(spec.provides)}
 requires:{yaml_list(spec.requires)}
 subpatterns:{yaml_list(spec.subpatterns)}
 composes_with:{yaml_list(spec.composes_with)}
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   units:
     - units/example.service

@@ -22,6 +22,7 @@ Tech II Rare:
 
   example:
     - T2R4.device-triggered-conveyor
+    - T2R5.signed-update-rail
 
 Tech II Mythic:
   may_use:

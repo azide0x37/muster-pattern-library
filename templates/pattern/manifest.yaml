@@ -11,6 +11,15 @@ requires:
   - systemd
 subpatterns: []
 composes_with: []
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   units:
     - units/example.service

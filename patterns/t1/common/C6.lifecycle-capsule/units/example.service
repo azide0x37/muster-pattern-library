@@ -1,0 +1,17 @@
+[Unit]
+Description=Muster lifecycle capsule example
+Documentation=file:README.md
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/muster-lifecycle-example/muster-lifecycle-example.env
+ExecStart=/opt/muster-lifecycle-example/current/bin/lifecycle-run.sh
+StateDirectory=muster-lifecycle-example
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/muster-lifecycle-example /run/muster
+
+[Install]
+WantedBy=multi-user.target

@@ -22,6 +22,16 @@ subpatterns:
 composes_with:
   - T3R1.multi-resource-orchestrator
   - T3M1.machine-priest
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - apply
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   units:
     - units/example.service

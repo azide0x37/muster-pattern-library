@@ -23,8 +23,10 @@ Use UV for Python commands:
 ```sh
 uv run python tools/validate_patterns.py
 uv run python tools/check_composition_rules.py
+uv run python tools/check_production_beta.py
 uv run python tools/render_index.py --check
 uv run python tools/render_graph.py --check
+uv run python tools/render_completion.py --check
 uv run python -m unittest discover tests
 ```
 
@@ -40,4 +42,4 @@ The first milestone is a complete, machine-checkable scaffold for the planned Mu
 `docs/index.md` and `docs/pattern-graph.md` are generated from manifests. Do not hand-edit them.
 `docs/completion.md` is also generated and reports maturity from manifest status fields.
 
-`T2R4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances.
+`T2R4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances. `C6.lifecycle-capsule` and `T2R5.signed-update-rail` capture the core install, doctor, update, rollback, and clean-uninstall lifecycle.

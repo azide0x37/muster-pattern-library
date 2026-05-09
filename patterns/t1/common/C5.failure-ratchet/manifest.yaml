@@ -14,6 +14,16 @@ subpatterns:[]
 composes_with:
   - C1.service-capsule
   - C2.persistent-tick
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - apply
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   units:
     - units/example.service

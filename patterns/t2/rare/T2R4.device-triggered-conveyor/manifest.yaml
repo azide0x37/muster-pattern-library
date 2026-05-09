@@ -30,6 +30,16 @@ subpatterns:
 composes_with:
   - T3C1.edge-appliance-bundle
   - T3R1.multi-resource-orchestrator
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - apply
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   udev:
     - udev/90-muster-device-conveyor.rules

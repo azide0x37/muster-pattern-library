@@ -9,6 +9,7 @@ graph TD
   C3["C3.dropfolder-trigger<br/>Dropfolder Trigger"]
   C4["C4.lazy-resource-gate<br/>Lazy Resource Gate"]
   C5["C5.failure-ratchet<br/>Failure Ratchet"]
+  C6["C6.lifecycle-capsule<br/>Lifecycle Capsule"]
   M1["M1.local-truth-sheaf<br/>Local Truth Sheaf"]
   M2["M2.holonomy-detector<br/>Holonomy Detector"]
   M3["M3.simplicial-task-graph<br/>Simplicial Task Graph"]
@@ -28,6 +29,7 @@ graph TD
   T2R2["T2R2.lazy-capability-media-bus<br/>Lazy Capability Media Bus"]
   T2R3["T2R3.edge-control-plane<br/>Edge Control Plane"]
   T2R4["T2R4.device-triggered-conveyor<br/>Device-Triggered Conveyor"]
+  T2R5["T2R5.signed-update-rail<br/>Signed Update Rail"]
   T3C1["T3C1.edge-appliance-bundle<br/>Edge Appliance Bundle"]
   T3M1["T3M1.machine-priest<br/>Machine Priest"]
   T3M2["T3M2.ritualized-recovery-loop<br/>Ritualized Recovery Loop"]
@@ -73,6 +75,10 @@ graph TD
   R5 --> T2R4
   T2C1 --> T2R4
   T2C3 --> T2R4
+  C2 --> T2R5
+  C5 --> T2R5
+  C6 --> T2R5
+  R4 --> T2R5
   T2C1 --> T3C1
   T2C3 --> T3C1
   T2C4 --> T3C1

@@ -15,6 +15,16 @@ subpatterns:[]
 composes_with:
   - C1.service-capsule
   - C5.failure-ratchet
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - apply
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   udev:
     - udev/90-muster-device-binding.rules

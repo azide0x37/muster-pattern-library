@@ -32,6 +32,25 @@ unknown
 
 Pattern `install.sh` scripts are dry-run by default. They may print the commands required to copy reviewed artifacts into `/etc/systemd/system` or `/usr/local/lib/muster`, but they must not mutate those locations unless invoked with `--apply`.
 
+Production-beta patterns declare lifecycle metadata in `manifest.yaml`. At minimum, they state supported install modes, doctor modes, rollback policy, uninstall policy, and update policy.
+
+## Lifecycle Contract
+
+Managed lifecycle patterns install code into versioned release directories and switch a stable `current` pointer:
+
+```text
+/opt/<project>/releases/<version>
+/opt/<project>/current -> releases/<version>
+/etc/<project>/<project>.env
+/var/lib/muster/lifecycle/<project>
+```
+
+Repeated installs must preserve existing config and converge cleanly. Doctors should support staged or mock roots where practical. Clean uninstall removes owned installed artifacts by default; config, durable state, and ledgers require an explicit purge flag.
+
+## Update Contract
+
+Automatic updates are opt-in. The first update rail consumes a release manifest with `version`, `artifact_url`, and `sha256`, verifies the artifact, stages it under `/opt/<project>/releases/<version>`, switches `current`, and runs the active release doctor. If the doctor fails, the rail restores the previous `current` target.
+
 ## Recovery Contract
 
 Manual recovery enters through `muster-recover@.service`. Recovery should target the failing limb first and avoid whole-host reboot as the default response.

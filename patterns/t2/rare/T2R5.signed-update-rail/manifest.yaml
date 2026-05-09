@@ -1,0 +1,53 @@
+id: T2R5.signed-update-rail
+name: Signed Update Rail
+tech_level: 2
+rarity: rare
+mrl: 5
+summary: >
+  Poll a release manifest, verify artifact hashes, stage a new release, promote the current pointer, and roll back automatically when the doctor gate fails.
+provides:
+  - manifest_update_rail
+  - doctor_gated_promotion
+  - automatic_rollback
+requires:
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - C6.lifecycle-capsule
+  - R4.state-ledger
+subpatterns:
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - C6.lifecycle-capsule
+  - R4.state-ledger
+composes_with:
+  - T3C1.edge-appliance-bundle
+lifecycle:
+  managed: true
+  install_modes:
+    - dry_run
+    - staged_root
+    - apply
+  doctor_modes:
+    - mock
+    - staged_root
+  rollback: doctor_gated
+  uninstall: artifacts_only
+  update: manifest_sha256
+artifacts:
+  units:
+    - units/muster-signed-update.service
+    - units/muster-signed-update.timer
+  scripts:
+    - scripts/update.sh
+    - scripts/install.sh
+    - scripts/doctor.sh
+    - scripts/rollback.sh
+    - scripts/uninstall.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

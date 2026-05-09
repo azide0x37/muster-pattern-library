@@ -31,6 +31,35 @@ class SchemaTests(unittest.TestCase):
         with self.assertRaises(PatternError):
             validate_manifest_shape(pattern)
 
+    def test_bad_lifecycle_mode_fails(self) -> None:
+        pattern = Pattern(
+            path=Path("patterns/t1/common/C6.bad/manifest.yaml"),
+            data={
+                "id": "C6.bad",
+                "name": "Bad Lifecycle",
+                "tech_level": 1,
+                "rarity": "common",
+                "mrl": 8,
+                "summary": "Bad lifecycle.",
+                "provides": ["managed_lifecycle"],
+                "requires": [],
+                "subpatterns": [],
+                "composes_with": [],
+                "artifacts": {},
+                "lifecycle": {
+                    "managed": True,
+                    "install_modes": ["freestyle"],
+                    "doctor_modes": ["mock"],
+                    "rollback": "artifact_generation",
+                    "uninstall": "artifacts_only",
+                    "update": "none",
+                },
+                "status": {"implementation": "draft", "docs": "draft", "tests": "draft"},
+            },
+        )
+        with self.assertRaises(PatternError):
+            validate_manifest_shape(pattern)
+
 
 if __name__ == "__main__":
     unittest.main()

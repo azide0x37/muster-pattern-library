@@ -40,6 +40,15 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
+    "C6.lifecycle-capsule": {
+        "units/example.service",
+        "scripts/lifecycle-run.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
+        "examples/minimal/README.md",
+    },
     "T2C1.hot-cold-nas-conveyor": {
         "units/muster-nas-conveyor.service",
         "units/muster-nas-conveyor.timer",
@@ -107,6 +116,16 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
+    "T2R5.signed-update-rail": {
+        "units/muster-signed-update.service",
+        "units/muster-signed-update.timer",
+        "scripts/update.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
+        "examples/minimal/README.md",
+    },
 }
 
 
@@ -134,6 +153,29 @@ def _fail_on_placeholders(pattern: Pattern, relpaths: set[str]) -> None:
                 raise PatternError(f"{path}: production-beta artifact contains marker {marker!r}")
 
 
+def _check_lifecycle_metadata(pattern: Pattern) -> None:
+    lifecycle = pattern.data.get("lifecycle")
+    if not isinstance(lifecycle, dict):
+        raise PatternError(f"{pattern.path}: production-beta pattern must declare lifecycle metadata")
+    install_modes = set(lifecycle["install_modes"])
+    doctor_modes = set(lifecycle["doctor_modes"])
+    if not ({"dry_run", "staged_root"} & install_modes):
+        raise PatternError(f"{pattern.path}: lifecycle.install_modes must include dry_run or staged_root")
+    if not ({"mock", "staged_root"} & doctor_modes):
+        raise PatternError(f"{pattern.path}: lifecycle.doctor_modes must include mock or staged_root")
+
+    actual = _artifact_paths(pattern)
+    if lifecycle["managed"]:
+        required = {"scripts/rollback.sh", "scripts/uninstall.sh"}
+        missing = sorted(required - actual)
+        if missing:
+            raise PatternError(f"{pattern.path}: managed lifecycle is missing artifacts: {', '.join(missing)}")
+        if lifecycle["uninstall"] != "artifacts_only":
+            raise PatternError(f"{pattern.path}: managed lifecycle must use artifact-only uninstall by default")
+    if lifecycle["update"] != "none" and "scripts/update.sh" not in actual:
+        raise PatternError(f"{pattern.path}: update lifecycle must declare scripts/update.sh")
+
+
 def check_production_beta(patterns: list[Pattern]) -> None:
     index = pattern_index(patterns)
     missing = sorted(PRODUCTION_BETA_PATTERNS - set(index))
@@ -156,6 +198,7 @@ def check_production_beta(patterns: list[Pattern]) -> None:
         for relpath in required:
             if not (pattern.path.parent / relpath).exists():
                 raise PatternError(f"{pattern.path}: required artifact does not exist: {relpath}")
+        _check_lifecycle_metadata(pattern)
         _fail_on_placeholders(pattern, required)
 
 

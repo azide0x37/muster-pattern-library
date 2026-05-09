@@ -28,6 +28,8 @@ List the files shipped by this pattern.
 
 Explain how to install or adapt the artifacts.
 
+For production-beta patterns, document whether install is dry-run, staged-root, or apply-only.
+
 ## Verification
 
 Explain how to prove the pattern is working.
@@ -39,6 +41,8 @@ List predictable failure cases and their signals.
 ## Rollback
 
 Explain how to disable or remove the pattern safely.
+
+If the pattern claims managed lifecycle behavior, document rollback and artifact-only uninstall commands.
 
 ## Security notes
 

@@ -15,6 +15,11 @@ VALID_STATUS = {
     "docs": {"draft", "reviewed", "stable"},
     "tests": {"missing", "draft", "reviewed", "stable"},
 }
+VALID_LIFECYCLE_INSTALL_MODES = {"dry_run", "staged_root", "apply"}
+VALID_LIFECYCLE_DOCTOR_MODES = {"local", "mock", "staged_root"}
+VALID_LIFECYCLE_ROLLBACK = {"documented", "artifact_generation", "doctor_gated"}
+VALID_LIFECYCLE_UNINSTALL = {"documented", "artifacts_only"}
+VALID_LIFECYCLE_UPDATE = {"none", "manifest_sha256", "signed_manifest"}
 
 REQUIRED_README_SECTIONS = [
     "## Intent",
@@ -244,6 +249,38 @@ def validate_manifest_shape(pattern: Pattern) -> None:
     for key, allowed in VALID_STATUS.items():
         if data["status"].get(key) not in allowed:
             raise PatternError(f"{path}: status.{key} has invalid value {data['status'].get(key)!r}")
+
+    lifecycle = data.get("lifecycle")
+    if lifecycle is not None:
+        validate_lifecycle_shape(lifecycle, path)
+
+
+def _validate_string_list(value: Any, allowed: set[str], label: str, path: Path) -> None:
+    if not isinstance(value, list) or not value or not all(isinstance(item, str) for item in value):
+        raise PatternError(f"{path}: lifecycle.{label} must be a non-empty list of strings")
+    invalid = sorted(set(value) - allowed)
+    if invalid:
+        raise PatternError(f"{path}: lifecycle.{label} has invalid values: {', '.join(invalid)}")
+
+
+def validate_lifecycle_shape(lifecycle: Any, path: Path) -> None:
+    if not isinstance(lifecycle, dict):
+        raise PatternError(f"{path}: lifecycle must be a mapping")
+    required = {"managed", "install_modes", "doctor_modes", "rollback", "uninstall", "update"}
+    missing = sorted(required - set(lifecycle))
+    if missing:
+        raise PatternError(f"{path}: lifecycle missing required fields: {', '.join(missing)}")
+    if not isinstance(lifecycle["managed"], bool):
+        raise PatternError(f"{path}: lifecycle.managed must be true or false")
+    _validate_string_list(lifecycle["install_modes"], VALID_LIFECYCLE_INSTALL_MODES, "install_modes", path)
+    _validate_string_list(lifecycle["doctor_modes"], VALID_LIFECYCLE_DOCTOR_MODES, "doctor_modes", path)
+    for key, allowed in {
+        "rollback": VALID_LIFECYCLE_ROLLBACK,
+        "uninstall": VALID_LIFECYCLE_UNINSTALL,
+        "update": VALID_LIFECYCLE_UPDATE,
+    }.items():
+        if lifecycle[key] not in allowed:
+            raise PatternError(f"{path}: lifecycle.{key} has invalid value {lifecycle[key]!r}")
 
 
 def validate_folder_contract(pattern: Pattern) -> None:

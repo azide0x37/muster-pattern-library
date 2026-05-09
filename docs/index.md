@@ -13,6 +13,7 @@ Generated from `patterns/**/manifest.yaml`.
 | [`C3.dropfolder-trigger`](../patterns/t1/common/C3.dropfolder-trigger/) | Dropfolder Trigger | 8 | - | draft/draft/draft |
 | [`C4.lazy-resource-gate`](../patterns/t1/common/C4.lazy-resource-gate/) | Lazy Resource Gate | 8 | - | usable/reviewed/reviewed |
 | [`C5.failure-ratchet`](../patterns/t1/common/C5.failure-ratchet/) | Failure Ratchet | 7 | - | usable/reviewed/reviewed |
+| [`C6.lifecycle-capsule`](../patterns/t1/common/C6.lifecycle-capsule/) | Lifecycle Capsule | 8 | - | usable/reviewed/reviewed |
 
 ### Rare
 
@@ -54,6 +55,7 @@ Generated from `patterns/**/manifest.yaml`.
 | [`T2R2.lazy-capability-media-bus`](../patterns/t2/rare/T2R2.lazy-capability-media-bus/) | Lazy Capability Media Bus | 5 | T2C1.hot-cold-nas-conveyor, R1.socket-anteroom, R3.cgroup-governor, R5.capability-mount | draft/draft/draft |
 | [`T2R3.edge-control-plane`](../patterns/t2/rare/T2R3.edge-control-plane/) | Edge Control Plane | 5 | T2C2.dropfolder-spooler, T2C3.scheduled-herald, T2C5.local-sidecar-bridge, R1.socket-anteroom, R2.device-binding, R4.state-ledger | draft/draft/draft |
 | [`T2R4.device-triggered-conveyor`](../patterns/t2/rare/T2R4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, R2.device-binding, R5.capability-mount, T2C1.hot-cold-nas-conveyor, T2C3.scheduled-herald | usable/reviewed/reviewed |
+| [`T2R5.signed-update-rail`](../patterns/t2/rare/T2R5.signed-update-rail/) | Signed Update Rail | 5 | C2.persistent-tick, C5.failure-ratchet, C6.lifecycle-capsule, R4.state-ledger | usable/reviewed/reviewed |
 
 ## Tech 3
 

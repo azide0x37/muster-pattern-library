@@ -19,6 +19,16 @@ subpatterns:
   - C5.failure-ratchet
 composes_with:
   - T3C1.edge-appliance-bundle
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - apply
+  doctor_modes:
+    - mock
+  rollback: documented
+  uninstall: documented
+  update: none
 artifacts:
   units:
     - units/example.service

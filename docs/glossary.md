@@ -19,3 +19,7 @@ Ritual: A staged recovery sequence with observe, isolate, reset, validate, and r
 Herald: A service that turns local status into operator-facing state.
 
 Ledger: A durable or runtime-local record of facts, decisions, and recovery attempts.
+
+Lifecycle Capsule: A local install, doctor, rollback, and uninstall boundary for one reviewed artifact bundle.
+
+Update Rail: A timer-driven path that verifies a release artifact, stages it, promotes it, and rolls back if the doctor gate fails.

@@ -46,6 +46,14 @@ List actual dependencies in `subpatterns`. List compatible but optional neighbor
 
 Do not cite a subpattern unless the pattern contract really depends on it.
 
+## Lifecycle Metadata
+
+Production-beta patterns must declare lifecycle metadata in `manifest.yaml`.
+
+Use `managed: false` when the pattern has dry-run install and doctor behavior but does not own rollback or uninstall scripts. Use `managed: true` only when the pattern ships concrete `rollback.sh` and `uninstall.sh` artifacts.
+
+Managed lifecycle patterns must preserve existing config on repeated install and default to artifact-only uninstall. Destructive config or state removal must require an explicit purge option.
+
 ## Mythic Discipline
 
 Mythic patterns must say:

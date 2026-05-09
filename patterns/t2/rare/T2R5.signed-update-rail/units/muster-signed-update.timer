@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Muster signed update checks
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=6h
+RandomizedDelaySec=20min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

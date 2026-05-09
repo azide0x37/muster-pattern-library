@@ -68,6 +68,44 @@
         "items": { "type": "string" }
       }
     },
+    "lifecycle": {
+      "type": "object",
+      "required": ["managed", "install_modes", "doctor_modes", "rollback", "uninstall", "update"],
+      "properties": {
+        "managed": {
+          "type": "boolean"
+        },
+        "install_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["dry_run", "staged_root", "apply"]
+          },
+          "minItems": 1
+        },
+        "doctor_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["local", "mock", "staged_root"]
+          },
+          "minItems": 1
+        },
+        "rollback": {
+          "type": "string",
+          "enum": ["documented", "artifact_generation", "doctor_gated"]
+        },
+        "uninstall": {
+          "type": "string",
+          "enum": ["documented", "artifacts_only"]
+        },
+        "update": {
+          "type": "string",
+          "enum": ["none", "manifest_sha256", "signed_manifest"]
+        }
+      },
+      "additionalProperties": false
+    },
     "status": {
       "type": "object",
       "required": ["implementation", "docs", "tests"],

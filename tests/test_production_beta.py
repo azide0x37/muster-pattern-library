@@ -2,7 +2,7 @@ import subprocess
 import unittest
 
 from tools.check_production_beta import REQUIRED_ARTIFACTS, check_production_beta
-from tools.completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS
+from tools.completion import FLAGSHIP_CHAIN, LIFECYCLE_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS
 from tools.patternlib import pattern_index, validate_all
 
 
@@ -41,6 +41,27 @@ class ProductionBetaTests(unittest.TestCase):
             result = subprocess.run([str(script), "--help"], text=True, capture_output=True, check=True)
             self.assertIn("--apply", result.stdout)
             self.assertIn("dry-run", result.stdout.lower())
+
+    def test_production_beta_patterns_declare_lifecycle_metadata(self) -> None:
+        patterns = pattern_index(validate_all())
+        for pattern_id in PRODUCTION_BETA_PATTERNS:
+            lifecycle = patterns[pattern_id].data.get("lifecycle")
+            self.assertIsInstance(lifecycle, dict)
+            self.assertTrue({"dry_run", "staged_root"} & set(lifecycle["install_modes"]))
+            self.assertTrue({"mock", "staged_root"} & set(lifecycle["doctor_modes"]))
+
+    def test_managed_lifecycle_patterns_have_rollback_and_uninstall(self) -> None:
+        patterns = pattern_index(validate_all())
+        for pattern_id in LIFECYCLE_CHAIN:
+            pattern = patterns[pattern_id]
+            self.assertTrue(pattern.data["lifecycle"]["managed"])
+            declared = {
+                relpath
+                for artifact_paths in pattern.data["artifacts"].values()
+                for relpath in artifact_paths
+            }
+            self.assertIn("scripts/rollback.sh", declared)
+            self.assertIn("scripts/uninstall.sh", declared)
 
 
 if __name__ == "__main__":
