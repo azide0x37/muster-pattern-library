@@ -36,6 +36,8 @@ DEVICE_TRIGGERED_CONVEYOR_CHAIN = {
     "T2R4.device-triggered-conveyor",
 }
 
+STABLE_DEVICE_CONVEYOR_CHAIN = DEVICE_TRIGGERED_CONVEYOR_CHAIN
+
 LIFECYCLE_CHAIN = {
     "C6.lifecycle-capsule",
     "T2R5.signed-update-rail",
@@ -48,6 +50,14 @@ PRODUCTION_BETA_STATUS = {
     "docs": "reviewed",
     "tests": "reviewed",
 }
+
+STABLE_STATUS = {
+    "implementation": "stable",
+    "docs": "stable",
+    "tests": "stable",
+}
+
+PRODUCTION_BETA_STATUSES = (PRODUCTION_BETA_STATUS, STABLE_STATUS)
 
 
 @dataclass(frozen=True)
@@ -109,4 +119,4 @@ def grouped_percentages(patterns: list[Pattern]) -> dict[tuple[int, str], float]
 
 
 def is_production_beta(pattern: Pattern) -> bool:
-    return pattern.data["status"] == PRODUCTION_BETA_STATUS
+    return pattern.data["status"] in PRODUCTION_BETA_STATUSES

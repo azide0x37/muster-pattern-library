@@ -15,14 +15,16 @@ composes_with:
   - C4.lazy-resource-gate
   - C5.failure-ratchet
 lifecycle:
-  managed: false
+  managed: true
   install_modes:
     - dry_run
+    - staged_root
     - apply
   doctor_modes:
     - mock
-  rollback: documented
-  uninstall: documented
+    - staged_root
+  rollback: artifact_generation
+  uninstall: artifacts_only
   update: none
 artifacts:
   units:
@@ -32,11 +34,13 @@ artifacts:
     - scripts/check-capability.sh
     - scripts/install.sh
     - scripts/doctor.sh
+    - scripts/rollback.sh
+    - scripts/uninstall.sh
   tests:
     - tests/test_manifest.py
   examples:
     - examples/minimal/README.md
 status:
-  implementation: usable
-  docs: reviewed
-  tests: reviewed
+  implementation: stable
+  docs: stable
+  tests: stable

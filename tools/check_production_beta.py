@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 try:
-    from completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS, is_production_beta
+    from completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES, is_production_beta
     from patternlib import Pattern, PatternError, pattern_index, validate_all
 except ModuleNotFoundError:
-    from tools.completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS, is_production_beta
+    from tools.completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES, is_production_beta
     from tools.patternlib import Pattern, PatternError, pattern_index, validate_all
 
 
@@ -97,6 +97,8 @@ REQUIRED_ARTIFACTS = {
         "scripts/device-bound-run.sh",
         "scripts/install.sh",
         "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
         "examples/minimal/README.md",
     },
     "R5.capability-mount": {
@@ -104,6 +106,8 @@ REQUIRED_ARTIFACTS = {
         "scripts/check-capability.sh",
         "scripts/install.sh",
         "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
         "examples/minimal/README.md",
     },
     "T2R4.device-triggered-conveyor": {
@@ -114,6 +118,8 @@ REQUIRED_ARTIFACTS = {
         "scripts/device-convey.sh",
         "scripts/install.sh",
         "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
         "examples/minimal/README.md",
     },
     "T2R5.signed-update-rail": {
@@ -188,8 +194,8 @@ def check_production_beta(patterns: list[Pattern]) -> None:
 
     for pattern_id in sorted(PRODUCTION_BETA_PATTERNS):
         pattern = index[pattern_id]
-        if pattern.data["status"] != PRODUCTION_BETA_STATUS:
-            raise PatternError(f"{pattern.path}: production-beta pattern must be usable/reviewed/reviewed")
+        if pattern.data["status"] not in PRODUCTION_BETA_STATUSES:
+            raise PatternError(f"{pattern.path}: production-beta pattern must be usable/reviewed/reviewed or stable/stable/stable")
         required = REQUIRED_ARTIFACTS[pattern_id]
         actual = _artifact_paths(pattern)
         missing_artifacts = sorted(required - actual)

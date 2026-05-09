@@ -20,10 +20,10 @@ Generated from `patterns/**/manifest.yaml`.
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
 | [`R1.socket-anteroom`](../patterns/t1/rare/R1.socket-anteroom/) | Socket Anteroom | 7 | - | draft/draft/draft |
-| [`R2.device-binding`](../patterns/t1/rare/R2.device-binding/) | Device Binding | 6 | - | usable/reviewed/reviewed |
+| [`R2.device-binding`](../patterns/t1/rare/R2.device-binding/) | Device Binding | 6 | - | stable/stable/stable |
 | [`R3.cgroup-governor`](../patterns/t1/rare/R3.cgroup-governor/) | Cgroup Governor | 6 | - | draft/draft/draft |
 | [`R4.state-ledger`](../patterns/t1/rare/R4.state-ledger/) | State Ledger | 6 | - | draft/draft/draft |
-| [`R5.capability-mount`](../patterns/t1/rare/R5.capability-mount/) | Capability Mount | 5 | - | usable/reviewed/reviewed |
+| [`R5.capability-mount`](../patterns/t1/rare/R5.capability-mount/) | Capability Mount | 5 | - | stable/stable/stable |
 
 ### Mythic
 
@@ -54,7 +54,7 @@ Generated from `patterns/**/manifest.yaml`.
 | [`T2R1.bluetooth-audio-gateway`](../patterns/t2/rare/T2R1.bluetooth-audio-gateway/) | Bluetooth Audio Gateway | 6 | T2C4.self-healing-reconnector, T2C5.local-sidecar-bridge, R2.device-binding, R4.state-ledger | draft/draft/draft |
 | [`T2R2.lazy-capability-media-bus`](../patterns/t2/rare/T2R2.lazy-capability-media-bus/) | Lazy Capability Media Bus | 5 | T2C1.hot-cold-nas-conveyor, R1.socket-anteroom, R3.cgroup-governor, R5.capability-mount | draft/draft/draft |
 | [`T2R3.edge-control-plane`](../patterns/t2/rare/T2R3.edge-control-plane/) | Edge Control Plane | 5 | T2C2.dropfolder-spooler, T2C3.scheduled-herald, T2C5.local-sidecar-bridge, R1.socket-anteroom, R2.device-binding, R4.state-ledger | draft/draft/draft |
-| [`T2R4.device-triggered-conveyor`](../patterns/t2/rare/T2R4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, R2.device-binding, R5.capability-mount, T2C1.hot-cold-nas-conveyor, T2C3.scheduled-herald | usable/reviewed/reviewed |
+| [`T2R4.device-triggered-conveyor`](../patterns/t2/rare/T2R4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, C6.lifecycle-capsule, R2.device-binding, R5.capability-mount, T2C1.hot-cold-nas-conveyor, T2C3.scheduled-herald | stable/stable/stable |
 | [`T2R5.signed-update-rail`](../patterns/t2/rare/T2R5.signed-update-rail/) | Signed Update Rail | 5 | C2.persistent-tick, C5.failure-ratchet, C6.lifecycle-capsule, R4.state-ledger | usable/reviewed/reviewed |
 
 ## Tech 3

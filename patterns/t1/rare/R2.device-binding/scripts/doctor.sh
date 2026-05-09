@@ -17,6 +17,11 @@ test -f "$pattern_dir/units/muster-device-bound@.service"
 test -f "$pattern_dir/udev/90-muster-device-binding.rules"
 test -x "$pattern_dir/scripts/device-bound-run.sh"
 grep -q 'SYSTEMD_WANTS' "$pattern_dir/udev/90-muster-device-binding.rules"
+if grep -q 'RUN+=' "$pattern_dir/udev/90-muster-device-binding.rules"; then
+  printf '%s\n' "udev rule must not run long work directly with RUN+=" >&2
+  exit 1
+fi
+grep -q 'BindsTo=dev-%i.device' "$pattern_dir/units/muster-device-bound@.service"
 
 if command -v systemd-analyze >/dev/null 2>&1; then
   systemd-analyze verify "$pattern_dir/units/muster-device-bound@.service"

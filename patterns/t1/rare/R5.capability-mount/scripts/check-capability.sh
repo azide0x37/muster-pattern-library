@@ -23,12 +23,16 @@ else
   mock_root=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-r5-capability}
   state_root=${STATE_ROOT:-$mock_root/run/muster}
   check_path=${MUSTER_MOCK_CAPABILITY_PATH:-$mock_root$path}
-  mkdir -p "$check_path"
+  if [ "${MUSTER_MOCK_SKIP_CREATE:-0}" != "1" ]; then
+    mkdir -p "$check_path"
+  fi
 fi
 
 mkdir -p "$state_root"
 state=unknown
 reason=unproven
+safe_name=$(printf '%s' "$name" | tr -cd 'A-Za-z0-9._-' | cut -c1-64)
+safe_name=${safe_name:-capability}
 
 if [ ! -d "$check_path" ]; then
   state=failed
@@ -44,7 +48,10 @@ else
   reason=permission_denied
 fi
 
-printf '{"capability":"%s","path":"%s","state":"%s","reason":"%s"}\n' "$name" "$path" "$state" "$reason" > "$state_root/capability-$name.json"
+status_file="$state_root/capability-$safe_name.json"
+tmp_file="$status_file.$$"
+printf '{"capability":"%s","path":"%s","state":"%s","reason":"%s"}\n' "$name" "$path" "$state" "$reason" > "$tmp_file"
+mv -f "$tmp_file" "$status_file"
 
 case "$state" in
   healthy) printf '%s\n' "ok: capability $name is healthy"; exit 0 ;;

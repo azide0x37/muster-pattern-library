@@ -16,10 +16,11 @@ for arg in "$@"; do
 done
 
 if [ "$apply" -eq 1 ]; then
-  state_root=${STATE_ROOT:-/run/muster}
-  base_root=${BASE_ROOT:-/var/lib/muster/device-conveyor}
-  hot_root=${HOT_ROOT:-/var/cache/muster/hot}
-  capability_path=${CAPABILITY_PATH:-/mnt/muster/cold}
+  root=${MUSTER_ROOT:-}
+  state_root=${STATE_ROOT:-$root/run/muster}
+  base_root=${BASE_ROOT:-$root/var/lib/muster/device-conveyor}
+  hot_root=${HOT_ROOT:-$root/var/cache/muster/hot}
+  capability_path=${CAPABILITY_PATH:-$root/mnt/muster/cold}
 else
   mock_root=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-tr4-device-conveyor}
   state_root=${STATE_ROOT:-$mock_root/run/muster}
@@ -40,7 +41,10 @@ run_dir="$base_root/work/$run_id"
 handoff_dir="$hot_root/device-conveyor"
 lock_file="$state_root/device-conveyor.lock"
 
-mkdir -p "$state_root" "$base_root/work" "$handoff_dir" "$capability_path"
+mkdir -p "$state_root" "$base_root/work" "$handoff_dir"
+if [ "${MUSTER_SKIP_MOCK_CAPABILITY_CREATE:-0}" != "1" ]; then
+  mkdir -p "$capability_path"
+fi
 
 write_state() {
   state=$1
@@ -65,14 +69,23 @@ require_capability() {
 wait_for_hot_capacity() {
   wait_script=${WAIT_FOR_HOT_CAPACITY:-}
   if [ -z "$wait_script" ]; then
-    candidate=$(CDPATH= cd -- "$(dirname -- "$0")/../../../.." 2>/dev/null && pwd)/t2/common/T2C1.hot-cold-nas-conveyor/scripts/wait-for-hot-capacity.sh
-    if [ -x "$candidate" ]; then
-      wait_script=$candidate
+    installed=${MUSTER_ROOT:-}/usr/local/lib/muster/wait-for-hot-capacity.sh
+    if [ "$apply" -eq 1 ] && [ -x "$installed" ]; then
+      wait_script=$installed
+    else
+      candidate=$(CDPATH= cd -- "$(dirname -- "$0")/../../../.." 2>/dev/null && pwd)/t2/common/T2C1.hot-cold-nas-conveyor/scripts/wait-for-hot-capacity.sh
+      if [ -x "$candidate" ]; then
+        wait_script=$candidate
+      fi
     fi
   fi
 
   if [ -n "$wait_script" ] && [ -x "$wait_script" ]; then
-    MUSTER_MOCK_ROOT="${MUSTER_MOCK_ROOT:-}" HOT_ROOT="$hot_root" STATE_ROOT="$state_root" MIN_HOT_FREE_BYTES="$min_hot_free_bytes" CAPACITY_TIMEOUT_SECONDS="$capacity_timeout_seconds" CAPACITY_INTERVAL_SECONDS="$capacity_interval_seconds" DRAIN_COMMAND="${DRAIN_COMMAND:-}" MUSTER_MOCK_BACKPRESSURE="${MUSTER_MOCK_BACKPRESSURE:-0}" "$wait_script"
+    wait_apply=
+    if [ "$apply" -eq 1 ]; then
+      wait_apply=--apply
+    fi
+    MUSTER_MOCK_ROOT="${MUSTER_MOCK_ROOT:-}" HOT_ROOT="$hot_root" STATE_ROOT="$state_root" MIN_HOT_FREE_BYTES="$min_hot_free_bytes" CAPACITY_TIMEOUT_SECONDS="$capacity_timeout_seconds" CAPACITY_INTERVAL_SECONDS="$capacity_interval_seconds" DRAIN_COMMAND="${DRAIN_COMMAND:-}" MUSTER_MOCK_BACKPRESSURE="${MUSTER_MOCK_BACKPRESSURE:-0}" "$wait_script" $wait_apply
     return
   fi
 
@@ -88,7 +101,9 @@ run_ingest() {
   mkdir -p "$run_dir"
   touch "$run_dir/.ingest-in-progress"
   if [ -n "$ingest_command" ]; then
-    DEVICE="$device" RUN_DIR="$run_dir" sh -c "$ingest_command"
+    if ! DEVICE="$device" RUN_DIR="$run_dir" sh -c "$ingest_command"; then
+      return 1
+    fi
   else
     printf 'mock ingest from %s\n' "$device" > "$run_dir/payload.txt"
   fi
@@ -103,7 +118,7 @@ handoff_to_conveyor() {
   printf '{"device":"%s","run_id":"%s","state":"ready_for_cold_publish","handoff":"%s"}\n' "$device" "$run_id" "$target" > "$state_root/device-conveyor-handoff.json"
 }
 
-if command -v flock >/dev/null 2>&1; then
+if command -v flock >/dev/null 2>&1 && [ "${MUSTER_FORCE_LOCKDIR:-0}" != "1" ]; then
   exec 9>"$lock_file"
   if ! flock -n 9; then
     write_state degraded already_running

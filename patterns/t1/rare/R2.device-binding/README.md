@@ -4,13 +4,13 @@
 
 Attach service lifetime to the presence of a USB, serial, Bluetooth, camera, or other local device.
 
-## Production beta contract
+## Stable contract
 
 Target platform is Debian/Raspberry Pi OS with systemd and udev. The udev rule must only request systemd work with `SYSTEMD_WANTS`; it must not perform long-running work directly. The template service receives a kernel device name and hands work to a bounded helper.
 
 ## When to use this
 
-Use this when the capability needs to be repeatable across a small Linux appliance.
+Use this when device presence should trigger or scope a systemd-owned service lifetime, especially for optical drives, USB serial adapters, cameras, and other local hardware.
 
 ## When not to use this
 
@@ -18,7 +18,7 @@ Do not use this when the device identity cannot be matched safely.
 
 ## System shape
 
-A small set of systemd-facing artifacts plus scripts and examples document the operational boundary.
+The udev rule narrows the device match and asks systemd to start `muster-device-bound@%k.service`. The service binds to `dev-%i.device`, records an observation through `device-bound-run.sh`, and leaves status in `/run/muster/device-binding.json`.
 
 The default example matches optical media devices (`sr[0-9]*`) because that is the narrowest future-DVD-ingester shape. Adapt the udev match before using it for USB serial, cameras, or other device classes.
 
@@ -29,30 +29,27 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
-- `examples/minimal/README.md` sketches a minimal usage.
+- `udev/90-muster-device-binding.rules` shows a udev-to-systemd handoff.
+- `units/muster-device-bound@.service` binds service lifetime to the device.
+- `scripts/device-bound-run.sh` records the bounded invocation.
+- `scripts/install.sh`, `scripts/rollback.sh`, and `scripts/uninstall.sh` manage staged lifecycle artifacts.
+- `scripts/doctor.sh` verifies the rule, unit, and mock invocation.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
-
-Run `scripts/install.sh` without arguments to inspect the dry-run copy plan. Use `--apply` only on the target host after reviewing the udev match.
+Run `scripts/install.sh` without arguments to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for staged verification, or `scripts/install.sh --apply` as root on a target host after reviewing the udev match.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
-
-The doctor verifies the rule contains `SYSTEMD_WANTS`, checks the unit when systemd tooling is available, and runs the helper in mock mode.
+Run `scripts/doctor.sh`. The doctor verifies `SYSTEMD_WANTS`, rejects udev `RUN+=`, checks device binding in the unit, and runs the helper in mock mode.
 
 ## Failure modes
 
-Expected failures should leave inspectable logs, status files, or failed artifacts.
+Bad udev matches can start the wrong unit. Missing systemd support means the rule cannot hand off work. Helper failures leave no long-running work inside udev; they surface as service failures and status files.
 
 ## Rollback
 
-Disable related systemd units, stop any active services, remove copied artifacts from the target host, and leave runtime logs available for inspection.
+Run `scripts/rollback.sh --apply` to restore the previous installed unit, rule, and helper from the lifecycle ledger. Run `scripts/uninstall.sh --apply` to remove owned artifacts while preserving config and lifecycle records.
 
 ## Security notes
 
@@ -60,4 +57,4 @@ Prefer stable device attributes and avoid broad permissions on `/dev` paths.
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add hardware-specific matching examples without changing the base lifecycle.

@@ -2,7 +2,14 @@ import subprocess
 import unittest
 
 from tools.check_production_beta import REQUIRED_ARTIFACTS, check_production_beta
-from tools.completion import FLAGSHIP_CHAIN, LIFECYCLE_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS
+from tools.completion import (
+    FLAGSHIP_CHAIN,
+    LIFECYCLE_CHAIN,
+    PRODUCTION_BETA_PATTERNS,
+    PRODUCTION_BETA_STATUSES,
+    STABLE_DEVICE_CONVEYOR_CHAIN,
+    STABLE_STATUS,
+)
 from tools.patternlib import pattern_index, validate_all
 
 
@@ -10,7 +17,7 @@ class ProductionBetaTests(unittest.TestCase):
     def test_only_declared_patterns_claim_production_beta_status(self) -> None:
         patterns = validate_all()
         for pattern in patterns:
-            if pattern.data["status"] == PRODUCTION_BETA_STATUS:
+            if pattern.data["status"] in PRODUCTION_BETA_STATUSES:
                 self.assertIn(pattern.id, PRODUCTION_BETA_PATTERNS)
 
     def test_required_artifacts_are_declared_and_present(self) -> None:
@@ -62,6 +69,11 @@ class ProductionBetaTests(unittest.TestCase):
             }
             self.assertIn("scripts/rollback.sh", declared)
             self.assertIn("scripts/uninstall.sh", declared)
+
+        for pattern_id in STABLE_DEVICE_CONVEYOR_CHAIN:
+            pattern = patterns[pattern_id]
+            self.assertEqual(pattern.data["status"], STABLE_STATUS)
+            self.assertTrue(pattern.data["lifecycle"]["managed"])
 
 
 if __name__ == "__main__":

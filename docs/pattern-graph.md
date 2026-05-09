@@ -71,6 +71,7 @@ graph TD
   C2 --> T2R4
   C4 --> T2R4
   C5 --> T2R4
+  C6 --> T2R4
   R2 --> T2R4
   R5 --> T2R4
   T2C1 --> T2R4

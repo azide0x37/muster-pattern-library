@@ -4,13 +4,13 @@
 
 Treat access to a resource such as NAS, secrets, cameras, or media as a capability with explicit ownership.
 
-## Production beta contract
+## Stable contract
 
 Target platform is Debian/Raspberry Pi OS with systemd. A capability check proves that a path is mounted or otherwise usable before a service writes to it. The default check treats an unmounted NAS destination as degraded rather than silently writing to local storage.
 
 ## When to use this
 
-Use this when the capability needs to be repeatable across a small Linux appliance.
+Use this when a service must prove access to a mount, credential-backed path, camera export, or media directory before doing destructive or high-volume work.
 
 ## When not to use this
 
@@ -18,9 +18,9 @@ Do not use this when a one-off shell command is clearer than a managed operation
 
 ## System shape
 
-A small set of systemd-facing artifacts plus scripts and examples document the operational boundary.
-
 The capability owner is explicit: the unit that needs the resource calls `check-capability.sh` or depends on `muster-capability@.service` before starting destructive or high-volume work.
+
+The checker writes atomic status JSON under `/run/muster` and uses stable exit codes: `0` for healthy, `75` for degraded, and `1` for failed.
 
 ## Subpatterns
 
@@ -29,30 +29,26 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
-- `examples/minimal/README.md` sketches a minimal usage.
+- `units/muster-capability@.service` wraps the capability check.
+- `scripts/check-capability.sh` verifies a named path and writes status JSON.
+- `scripts/install.sh`, `scripts/rollback.sh`, and `scripts/uninstall.sh` manage staged lifecycle artifacts.
+- `scripts/doctor.sh` verifies the unit and mock capability behavior.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
-
-Run `scripts/install.sh` with no arguments first. It prints the copy plan. Use `--apply` only on the target host after reviewing capability names, paths, and credentials.
+Run `scripts/install.sh` with no arguments first. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for staged verification, or `scripts/install.sh --apply` as root on a target host after reviewing capability names, paths, and credentials.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
-
-The doctor runs the capability checker in mock mode and verifies that it records an explicit capability state.
+Run `scripts/doctor.sh`. It runs the capability checker in mock mode and verifies explicit capability state output.
 
 ## Failure modes
 
-Expected failures should leave inspectable logs, status files, or failed artifacts.
+Missing paths fail with exit `1`. Existing but unmounted apply-mode paths degrade with exit `75` when `findmnt` is available. Permission problems degrade with exit `75`. All outcomes write status JSON using a sanitized capability name.
 
 ## Rollback
 
-Disable related systemd units, stop any active services, remove copied artifacts from the target host, and leave runtime logs available for inspection.
+Run `scripts/rollback.sh --apply` to restore the previous installed unit and helper. Run `scripts/uninstall.sh --apply` to remove owned artifacts while preserving config and lifecycle records.
 
 ## Security notes
 
@@ -60,4 +56,4 @@ Never commit credentials. Mount secrets through systemd credentials, protected f
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add credential-specific examples without changing the base capability proof.

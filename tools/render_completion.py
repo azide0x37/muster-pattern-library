@@ -6,6 +6,7 @@ from completion import (
     DEVICE_TRIGGERED_CONVEYOR_CHAIN,
     FLAGSHIP_CHAIN,
     LIFECYCLE_CHAIN,
+    STABLE_DEVICE_CONVEYOR_CHAIN,
     completion_rows,
     grouped_percentages,
     overall_percent,
@@ -82,6 +83,21 @@ def render() -> str:
     )
     for row in rows:
         if row.pattern_id not in LIFECYCLE_CHAIN:
+            continue
+        status = f"{row.implementation}/{row.docs}/{row.tests}"
+        lines.append(f"| `{row.pattern_id}` | {row.name} | {status} | {row.percent}% |")
+
+    lines.extend(
+        [
+            "",
+            "## Stable Device Conveyor Chain",
+            "",
+            "| ID | Pattern | Status | Completion |",
+            "| --- | --- | --- | ---: |",
+        ]
+    )
+    for row in rows:
+        if row.pattern_id not in STABLE_DEVICE_CONVEYOR_CHAIN:
             continue
         status = f"{row.implementation}/{row.docs}/{row.tests}"
         lines.append(f"| `{row.pattern_id}` | {row.name} | {status} | {row.percent}% |")
