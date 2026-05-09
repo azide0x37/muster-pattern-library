@@ -1,0 +1,51 @@
+id: T2R4.device-triggered-conveyor
+name: Device-Triggered Conveyor
+tech_level: 2
+rarity: rare
+mrl: 5
+summary: >
+  Bind a physical device event to a bounded ingest job that waits for hot-storage capacity, proves cold-storage capability, stages local work, and hands output to a hot/cold conveyor.
+provides:
+  - device_triggered_ingest
+  - backpressured_hot_storage
+  - atomic_cold_publish_handoff
+requires:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C4.lazy-resource-gate
+  - C5.failure-ratchet
+  - R2.device-binding
+  - R5.capability-mount
+  - T2C1.hot-cold-nas-conveyor
+  - T2C3.scheduled-herald
+subpatterns:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C4.lazy-resource-gate
+  - C5.failure-ratchet
+  - R2.device-binding
+  - R5.capability-mount
+  - T2C1.hot-cold-nas-conveyor
+  - T2C3.scheduled-herald
+composes_with:
+  - T3C1.edge-appliance-bundle
+  - T3R1.multi-resource-orchestrator
+artifacts:
+  udev:
+    - udev/90-muster-device-conveyor.rules
+  units:
+    - units/muster-device-conveyor@.service
+    - units/muster-device-conveyor-drain.service
+    - units/muster-device-conveyor-drain.timer
+  scripts:
+    - scripts/device-convey.sh
+    - scripts/install.sh
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

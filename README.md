@@ -40,4 +40,4 @@ The first milestone is a complete, machine-checkable scaffold for the planned Mu
 `docs/index.md` and `docs/pattern-graph.md` are generated from manifests. Do not hand-edit them.
 `docs/completion.md` is also generated and reports maturity from manifest status fields.
 
-`TR4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances.
+`T2R4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances.

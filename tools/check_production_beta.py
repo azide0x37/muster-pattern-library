@@ -40,7 +40,7 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
-    "TC1.hot-cold-nas-conveyor": {
+    "T2C1.hot-cold-nas-conveyor": {
         "units/muster-nas-conveyor.service",
         "units/muster-nas-conveyor.timer",
         "scripts/convey.sh",
@@ -49,7 +49,7 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
-    "TC3.scheduled-herald": {
+    "T2C3.scheduled-herald": {
         "units/muster-herald.service",
         "units/muster-herald.timer",
         "scripts/collect-status.sh",
@@ -57,7 +57,7 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
-    "TC4.self-healing-reconnector": {
+    "T2C4.self-healing-reconnector": {
         "units/muster-reconnect@.service",
         "units/muster-reconnect.timer",
         "scripts/reconnect.sh",
@@ -65,7 +65,7 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
-    "TC5.local-sidecar-bridge": {
+    "T2C5.local-sidecar-bridge": {
         "units/muster-sidecar-bridge.service",
         "units/muster-sidecar-bridge.timer",
         "scripts/bridge-status.sh",
@@ -97,7 +97,7 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
-    "TR4.device-triggered-conveyor": {
+    "T2R4.device-triggered-conveyor": {
         "udev/90-muster-device-conveyor.rules",
         "units/muster-device-conveyor@.service",
         "units/muster-device-conveyor-drain.service",

@@ -20,7 +20,7 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^(C|R|M|TC|TR|TM|T3C|T3R|T3M)[0-9]+\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "pattern": "^(C|R|M|T2C|T2R|T2M|T3C|T3R|T3M)[0-9]+\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
     "name": {
       "type": "string",

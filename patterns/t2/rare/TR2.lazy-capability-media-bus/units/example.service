@@ -1,7 +1,0 @@
-[Unit]
-Description=Muster example for Lazy Capability Media Bus
-Documentation=file:README.md
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern TR2.lazy-capability-media-bus'

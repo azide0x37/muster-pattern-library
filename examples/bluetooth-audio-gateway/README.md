@@ -4,7 +4,7 @@ A Bluetooth audio appliance that distinguishes device visibility, connection, si
 
 ## Pattern Map
 
-- `TR1.bluetooth-audio-gateway`
+- `T2R1.bluetooth-audio-gateway`
 - `T3R1.multi-resource-orchestrator`
 - `R2.device-binding`
 - `R4.state-ledger`

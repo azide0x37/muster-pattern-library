@@ -20,7 +20,7 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 
 - `M4.local-topos-runtime`
 - `M5.temporal-sheaf`
-- `TR3.edge-control-plane`
+- `T2R3.edge-control-plane`
 - `R5.capability-mount`
 
 ## Files

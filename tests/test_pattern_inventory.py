@@ -13,7 +13,7 @@ class PatternInventoryTests(unittest.TestCase):
         self.assertIn("T3C1.edge-appliance-bundle", ids)
         self.assertIn("T3R1.multi-resource-orchestrator", ids)
         self.assertIn("T3M1.machine-priest", ids)
-        self.assertIn("TR4.device-triggered-conveyor", ids)
+        self.assertIn("T2R4.device-triggered-conveyor", ids)
 
 
 if __name__ == "__main__":

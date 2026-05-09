@@ -25,10 +25,10 @@ Overall maturity: **49.9%**
 | `C2.persistent-tick` | Persistent Tick | usable/reviewed/reviewed | 76.7% |
 | `C4.lazy-resource-gate` | Lazy Resource Gate | usable/reviewed/reviewed | 76.7% |
 | `C5.failure-ratchet` | Failure Ratchet | usable/reviewed/reviewed | 76.7% |
-| `TC1.hot-cold-nas-conveyor` | Hot/Cold NAS Conveyor | usable/reviewed/reviewed | 76.7% |
-| `TC3.scheduled-herald` | Scheduled Herald | usable/reviewed/reviewed | 76.7% |
-| `TC4.self-healing-reconnector` | Self-Healing Reconnector | usable/reviewed/reviewed | 76.7% |
-| `TC5.local-sidecar-bridge` | Local Sidecar Bridge | usable/reviewed/reviewed | 76.7% |
+| `T2C1.hot-cold-nas-conveyor` | Hot/Cold NAS Conveyor | usable/reviewed/reviewed | 76.7% |
+| `T2C3.scheduled-herald` | Scheduled Herald | usable/reviewed/reviewed | 76.7% |
+| `T2C4.self-healing-reconnector` | Self-Healing Reconnector | usable/reviewed/reviewed | 76.7% |
+| `T2C5.local-sidecar-bridge` | Local Sidecar Bridge | usable/reviewed/reviewed | 76.7% |
 | `T3C1.edge-appliance-bundle` | Edge Appliance Bundle | usable/reviewed/reviewed | 76.7% |
 
 ## Production-Beta Device Conveyor Chain
@@ -37,7 +37,7 @@ Overall maturity: **49.9%**
 | --- | --- | --- | ---: |
 | `R2.device-binding` | Device Binding | usable/reviewed/reviewed | 76.7% |
 | `R5.capability-mount` | Capability Mount | usable/reviewed/reviewed | 76.7% |
-| `TR4.device-triggered-conveyor` | Device-Triggered Conveyor | usable/reviewed/reviewed | 76.7% |
+| `T2R4.device-triggered-conveyor` | Device-Triggered Conveyor | usable/reviewed/reviewed | 76.7% |
 
 ## Full Inventory
 
@@ -58,15 +58,15 @@ Overall maturity: **49.9%**
 | `R3.cgroup-governor` | Cgroup Governor | draft/draft/draft | 33.0% |
 | `R4.state-ledger` | State Ledger | draft/draft/draft | 33.0% |
 | `R5.capability-mount` | Capability Mount | usable/reviewed/reviewed | 76.7% |
-| `TC1.hot-cold-nas-conveyor` | Hot/Cold NAS Conveyor | usable/reviewed/reviewed | 76.7% |
-| `TC2.dropfolder-spooler` | Dropfolder Spooler | draft/draft/draft | 33.0% |
-| `TC3.scheduled-herald` | Scheduled Herald | usable/reviewed/reviewed | 76.7% |
-| `TC4.self-healing-reconnector` | Self-Healing Reconnector | usable/reviewed/reviewed | 76.7% |
-| `TC5.local-sidecar-bridge` | Local Sidecar Bridge | usable/reviewed/reviewed | 76.7% |
-| `TR1.bluetooth-audio-gateway` | Bluetooth Audio Gateway | draft/draft/draft | 33.0% |
-| `TR2.lazy-capability-media-bus` | Lazy Capability Media Bus | draft/draft/draft | 33.0% |
-| `TR3.edge-control-plane` | Edge Control Plane | draft/draft/draft | 33.0% |
-| `TR4.device-triggered-conveyor` | Device-Triggered Conveyor | usable/reviewed/reviewed | 76.7% |
+| `T2C1.hot-cold-nas-conveyor` | Hot/Cold NAS Conveyor | usable/reviewed/reviewed | 76.7% |
+| `T2C2.dropfolder-spooler` | Dropfolder Spooler | draft/draft/draft | 33.0% |
+| `T2C3.scheduled-herald` | Scheduled Herald | usable/reviewed/reviewed | 76.7% |
+| `T2C4.self-healing-reconnector` | Self-Healing Reconnector | usable/reviewed/reviewed | 76.7% |
+| `T2C5.local-sidecar-bridge` | Local Sidecar Bridge | usable/reviewed/reviewed | 76.7% |
+| `T2R1.bluetooth-audio-gateway` | Bluetooth Audio Gateway | draft/draft/draft | 33.0% |
+| `T2R2.lazy-capability-media-bus` | Lazy Capability Media Bus | draft/draft/draft | 33.0% |
+| `T2R3.edge-control-plane` | Edge Control Plane | draft/draft/draft | 33.0% |
+| `T2R4.device-triggered-conveyor` | Device-Triggered Conveyor | usable/reviewed/reviewed | 76.7% |
 | `T3C1.edge-appliance-bundle` | Edge Appliance Bundle | usable/reviewed/reviewed | 76.7% |
 | `T3M1.machine-priest` | Machine Priest | draft/draft/draft | 33.0% |
 | `T3M2.ritualized-recovery-loop` | Ritualized Recovery Loop | draft/draft/draft | 33.0% |

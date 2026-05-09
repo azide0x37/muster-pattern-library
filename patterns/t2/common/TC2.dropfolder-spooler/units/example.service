@@ -1,7 +1,0 @@
-[Unit]
-Description=Muster example for Dropfolder Spooler
-Documentation=file:README.md
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern TC2.dropfolder-spooler'

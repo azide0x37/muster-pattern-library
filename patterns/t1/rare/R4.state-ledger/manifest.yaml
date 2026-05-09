@@ -13,7 +13,7 @@ requires:
   - runtime_directory
 subpatterns:[]
 composes_with:
-  - TC3.scheduled-herald
+  - T2C3.scheduled-herald
 artifacts:
   units:
     - units/example.service

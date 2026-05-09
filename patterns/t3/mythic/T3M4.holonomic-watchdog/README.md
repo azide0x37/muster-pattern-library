@@ -19,8 +19,8 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 ## Subpatterns
 
 - `M2.holonomy-detector`
-- `TC3.scheduled-herald`
-- `TC4.self-healing-reconnector`
+- `T2C3.scheduled-herald`
+- `T2C4.self-healing-reconnector`
 - `R4.state-ledger`
 
 ## Files

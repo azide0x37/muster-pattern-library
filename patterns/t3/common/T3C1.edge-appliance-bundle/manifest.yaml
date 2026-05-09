@@ -10,15 +10,15 @@ provides:
   - health_report
   - recoverable_runtime
 requires:
-  - TC1.hot-cold-nas-conveyor
-  - TC3.scheduled-herald
-  - TC4.self-healing-reconnector
-  - TC5.local-sidecar-bridge
+  - T2C1.hot-cold-nas-conveyor
+  - T2C3.scheduled-herald
+  - T2C4.self-healing-reconnector
+  - T2C5.local-sidecar-bridge
 subpatterns:
-  - TC1.hot-cold-nas-conveyor
-  - TC3.scheduled-herald
-  - TC4.self-healing-reconnector
-  - TC5.local-sidecar-bridge
+  - T2C1.hot-cold-nas-conveyor
+  - T2C3.scheduled-herald
+  - T2C4.self-healing-reconnector
+  - T2C5.local-sidecar-bridge
 composes_with:
   - T3R1.multi-resource-orchestrator
   - T3M1.machine-priest

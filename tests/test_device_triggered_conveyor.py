@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class DeviceTriggeredConveyorTests(unittest.TestCase):
     def test_backpressure_waits_for_drain_then_continues(self) -> None:
-        script = ROOT / "patterns/t2/rare/TR4.device-triggered-conveyor/scripts/device-convey.sh"
-        wait_script = ROOT / "patterns/t2/common/TC1.hot-cold-nas-conveyor/scripts/wait-for-hot-capacity.sh"
+        script = ROOT / "patterns/t2/rare/T2R4.device-triggered-conveyor/scripts/device-convey.sh"
+        wait_script = ROOT / "patterns/t2/common/T2C1.hot-cold-nas-conveyor/scripts/wait-for-hot-capacity.sh"
 
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)

@@ -20,8 +20,8 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 
 - `M1.local-truth-sheaf`
 - `M3.simplicial-task-graph`
-- `TR3.edge-control-plane`
-- `TC3.scheduled-herald`
+- `T2R3.edge-control-plane`
+- `T2C3.scheduled-herald`
 
 ## Files
 

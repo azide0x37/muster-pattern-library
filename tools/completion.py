@@ -23,17 +23,17 @@ FLAGSHIP_CHAIN = {
     "C2.persistent-tick",
     "C4.lazy-resource-gate",
     "C5.failure-ratchet",
-    "TC1.hot-cold-nas-conveyor",
-    "TC3.scheduled-herald",
-    "TC4.self-healing-reconnector",
-    "TC5.local-sidecar-bridge",
+    "T2C1.hot-cold-nas-conveyor",
+    "T2C3.scheduled-herald",
+    "T2C4.self-healing-reconnector",
+    "T2C5.local-sidecar-bridge",
     "T3C1.edge-appliance-bundle",
 }
 
 DEVICE_TRIGGERED_CONVEYOR_CHAIN = {
     "R2.device-binding",
     "R5.capability-mount",
-    "TR4.device-triggered-conveyor",
+    "T2R4.device-triggered-conveyor",
 }
 
 PRODUCTION_BETA_PATTERNS = FLAGSHIP_CHAIN | DEVICE_TRIGGERED_CONVEYOR_CHAIN

@@ -21,7 +21,7 @@ Tech II Rare:
     - T2 Common
 
   example:
-    - TR4.device-triggered-conveyor
+    - T2R4.device-triggered-conveyor
 
 Tech II Mythic:
   may_use:

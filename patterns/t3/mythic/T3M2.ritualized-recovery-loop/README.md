@@ -19,7 +19,7 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 ## Subpatterns
 
 - `C5.failure-ratchet`
-- `TC4.self-healing-reconnector`
+- `T2C4.self-healing-reconnector`
 - `R4.state-ledger`
 - `M2.holonomy-detector`
 - `M5.temporal-sheaf`

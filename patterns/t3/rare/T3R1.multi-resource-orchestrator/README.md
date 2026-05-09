@@ -19,9 +19,9 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 ## Subpatterns
 
 - `T3C1.edge-appliance-bundle`
-- `TR1.bluetooth-audio-gateway`
-- `TR2.lazy-capability-media-bus`
-- `TR3.edge-control-plane`
+- `T2R1.bluetooth-audio-gateway`
+- `T2R2.lazy-capability-media-bus`
+- `T2R3.edge-control-plane`
 - `R2.device-binding`
 - `R4.state-ledger`
 

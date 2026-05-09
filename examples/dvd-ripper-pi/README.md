@@ -9,9 +9,9 @@ A user-owned-media workflow sketch that keeps commands as placeholders, sends ou
 - `C3.dropfolder-trigger`
 - `C4.lazy-resource-gate`
 - `C5.failure-ratchet`
-- `TC1.hot-cold-nas-conveyor`
-- `TC2.dropfolder-spooler`
-- `TC3.scheduled-herald`
+- `T2C1.hot-cold-nas-conveyor`
+- `T2C2.dropfolder-spooler`
+- `T2C3.scheduled-herald`
 - `T3C1.edge-appliance-bundle`
 
 ## Architecture

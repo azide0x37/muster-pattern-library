@@ -5,10 +5,10 @@ A baseline Pi-style appliance with local service management, lazy storage, sched
 ## Pattern Map
 
 - `T3C1.edge-appliance-bundle`
-- `TC1.hot-cold-nas-conveyor`
-- `TC3.scheduled-herald`
-- `TC4.self-healing-reconnector`
-- `TC5.local-sidecar-bridge`
+- `T2C1.hot-cold-nas-conveyor`
+- `T2C3.scheduled-herald`
+- `T2C4.self-healing-reconnector`
+- `T2C5.local-sidecar-bridge`
 
 ## Architecture
 

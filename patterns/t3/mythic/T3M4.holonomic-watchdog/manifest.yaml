@@ -9,13 +9,13 @@ provides:
   - watchdog_drift_loop
 requires:
   - M2.holonomy-detector
-  - TC3.scheduled-herald
-  - TC4.self-healing-reconnector
+  - T2C3.scheduled-herald
+  - T2C4.self-healing-reconnector
   - R4.state-ledger
 subpatterns:
   - M2.holonomy-detector
-  - TC3.scheduled-herald
-  - TC4.self-healing-reconnector
+  - T2C3.scheduled-herald
+  - T2C4.self-healing-reconnector
   - R4.state-ledger
 composes_with:[]
 artifacts:

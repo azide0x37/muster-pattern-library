@@ -4,8 +4,8 @@ A safe mock-first spooler with inbox claiming, done/failed folders, fake sender 
 
 ## Pattern Map
 
-- `TC2.dropfolder-spooler`
-- `TR3.edge-control-plane`
+- `T2C2.dropfolder-spooler`
+- `T2R3.edge-control-plane`
 - `R2.device-binding`
 
 ## Architecture

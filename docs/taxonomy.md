@@ -36,12 +36,12 @@ MRL means Muster Readiness Level.
 C1   Tech I Common
 R1   Tech I Rare
 M1   Tech I Mythic
-TC1  Tech II Common
-TR1  Tech II Rare
-TM1  Tech II Mythic
+T2C1 Tech II Common
+T2R1 Tech II Rare
+T2M1 Tech II Mythic
 T3C1 Tech III Common
 T3R1 Tech III Rare
 T3M1 Tech III Mythic
 ```
 
-Tech III Mythic patterns use `T3M*` to avoid colliding with Tech II Mythic `TM*`.
+Tech II and Tech III patterns use explicit level prefixes so the identifier carries both tier and rarity.

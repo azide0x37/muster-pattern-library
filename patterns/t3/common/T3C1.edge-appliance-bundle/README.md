@@ -24,10 +24,10 @@ The health states are `healthy`, `degraded`, `failed`, and `unknown`. `unknown` 
 
 ## Subpatterns
 
-- `TC1.hot-cold-nas-conveyor`
-- `TC3.scheduled-herald`
-- `TC4.self-healing-reconnector`
-- `TC5.local-sidecar-bridge`
+- `T2C1.hot-cold-nas-conveyor`
+- `T2C3.scheduled-herald`
+- `T2C4.self-healing-reconnector`
+- `T2C5.local-sidecar-bridge`
 
 ## Files
 

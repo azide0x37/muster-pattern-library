@@ -31,7 +31,7 @@ REQUIRED_README_SECTIONS = [
     "## Future work",
 ]
 
-ID_RE = re.compile(r"^(C|R|M|TC|TR|TM|T3C|T3R|T3M)([0-9]+)\.[a-z0-9]+(?:-[a-z0-9]+)*$")
+ID_RE = re.compile(r"^(C|R|M|T2C|T2R|T2M|T3C|T3R|T3M)([0-9]+)\.[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 class PatternError(Exception):
@@ -187,9 +187,9 @@ def validate_id_shape(data: dict[str, Any], path: Path) -> None:
         (1, "common"): {"C"},
         (1, "rare"): {"R"},
         (1, "mythic"): {"M"},
-        (2, "common"): {"TC"},
-        (2, "rare"): {"TR"},
-        (2, "mythic"): {"TM"},
+        (2, "common"): {"T2C"},
+        (2, "rare"): {"T2R"},
+        (2, "mythic"): {"T2M"},
         (3, "common"): {"T3C"},
         (3, "rare"): {"T3R"},
         (3, "mythic"): {"T3M"},

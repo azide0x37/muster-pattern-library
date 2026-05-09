@@ -40,20 +40,20 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`TC1.hot-cold-nas-conveyor`](../patterns/t2/common/TC1.hot-cold-nas-conveyor/) | Hot/Cold NAS Conveyor | 8 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet | usable/reviewed/reviewed |
-| [`TC2.dropfolder-spooler`](../patterns/t2/common/TC2.dropfolder-spooler/) | Dropfolder Spooler | 8 | C1.service-capsule, C3.dropfolder-trigger, C5.failure-ratchet | draft/draft/draft |
-| [`TC3.scheduled-herald`](../patterns/t2/common/TC3.scheduled-herald/) | Scheduled Herald | 8 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
-| [`TC4.self-healing-reconnector`](../patterns/t2/common/TC4.self-healing-reconnector/) | Self-Healing Reconnector | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
-| [`TC5.local-sidecar-bridge`](../patterns/t2/common/TC5.local-sidecar-bridge/) | Local Sidecar Bridge | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`T2C1.hot-cold-nas-conveyor`](../patterns/t2/common/T2C1.hot-cold-nas-conveyor/) | Hot/Cold NAS Conveyor | 8 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`T2C2.dropfolder-spooler`](../patterns/t2/common/T2C2.dropfolder-spooler/) | Dropfolder Spooler | 8 | C1.service-capsule, C3.dropfolder-trigger, C5.failure-ratchet | draft/draft/draft |
+| [`T2C3.scheduled-herald`](../patterns/t2/common/T2C3.scheduled-herald/) | Scheduled Herald | 8 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`T2C4.self-healing-reconnector`](../patterns/t2/common/T2C4.self-healing-reconnector/) | Self-Healing Reconnector | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`T2C5.local-sidecar-bridge`](../patterns/t2/common/T2C5.local-sidecar-bridge/) | Local Sidecar Bridge | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
 
 ### Rare
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`TR1.bluetooth-audio-gateway`](../patterns/t2/rare/TR1.bluetooth-audio-gateway/) | Bluetooth Audio Gateway | 6 | TC4.self-healing-reconnector, TC5.local-sidecar-bridge, R2.device-binding, R4.state-ledger | draft/draft/draft |
-| [`TR2.lazy-capability-media-bus`](../patterns/t2/rare/TR2.lazy-capability-media-bus/) | Lazy Capability Media Bus | 5 | TC1.hot-cold-nas-conveyor, R1.socket-anteroom, R3.cgroup-governor, R5.capability-mount | draft/draft/draft |
-| [`TR3.edge-control-plane`](../patterns/t2/rare/TR3.edge-control-plane/) | Edge Control Plane | 5 | TC2.dropfolder-spooler, TC3.scheduled-herald, TC5.local-sidecar-bridge, R1.socket-anteroom, R2.device-binding, R4.state-ledger | draft/draft/draft |
-| [`TR4.device-triggered-conveyor`](../patterns/t2/rare/TR4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, R2.device-binding, R5.capability-mount, TC1.hot-cold-nas-conveyor, TC3.scheduled-herald | usable/reviewed/reviewed |
+| [`T2R1.bluetooth-audio-gateway`](../patterns/t2/rare/T2R1.bluetooth-audio-gateway/) | Bluetooth Audio Gateway | 6 | T2C4.self-healing-reconnector, T2C5.local-sidecar-bridge, R2.device-binding, R4.state-ledger | draft/draft/draft |
+| [`T2R2.lazy-capability-media-bus`](../patterns/t2/rare/T2R2.lazy-capability-media-bus/) | Lazy Capability Media Bus | 5 | T2C1.hot-cold-nas-conveyor, R1.socket-anteroom, R3.cgroup-governor, R5.capability-mount | draft/draft/draft |
+| [`T2R3.edge-control-plane`](../patterns/t2/rare/T2R3.edge-control-plane/) | Edge Control Plane | 5 | T2C2.dropfolder-spooler, T2C3.scheduled-herald, T2C5.local-sidecar-bridge, R1.socket-anteroom, R2.device-binding, R4.state-ledger | draft/draft/draft |
+| [`T2R4.device-triggered-conveyor`](../patterns/t2/rare/T2R4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, R2.device-binding, R5.capability-mount, T2C1.hot-cold-nas-conveyor, T2C3.scheduled-herald | usable/reviewed/reviewed |
 
 ## Tech 3
 
@@ -61,20 +61,20 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`T3C1.edge-appliance-bundle`](../patterns/t3/common/T3C1.edge-appliance-bundle/) | Edge Appliance Bundle | 7 | TC1.hot-cold-nas-conveyor, TC3.scheduled-herald, TC4.self-healing-reconnector, TC5.local-sidecar-bridge | usable/reviewed/reviewed |
+| [`T3C1.edge-appliance-bundle`](../patterns/t3/common/T3C1.edge-appliance-bundle/) | Edge Appliance Bundle | 7 | T2C1.hot-cold-nas-conveyor, T2C3.scheduled-herald, T2C4.self-healing-reconnector, T2C5.local-sidecar-bridge | usable/reviewed/reviewed |
 
 ### Rare
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`T3R1.multi-resource-orchestrator`](../patterns/t3/rare/T3R1.multi-resource-orchestrator/) | Multi-Resource Orchestrator | 5 | T3C1.edge-appliance-bundle, TR1.bluetooth-audio-gateway, TR2.lazy-capability-media-bus, TR3.edge-control-plane, R2.device-binding, R4.state-ledger | draft/draft/draft |
+| [`T3R1.multi-resource-orchestrator`](../patterns/t3/rare/T3R1.multi-resource-orchestrator/) | Multi-Resource Orchestrator | 5 | T3C1.edge-appliance-bundle, T2R1.bluetooth-audio-gateway, T2R2.lazy-capability-media-bus, T2R3.edge-control-plane, R2.device-binding, R4.state-ledger | draft/draft/draft |
 
 ### Mythic
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
 | [`T3M1.machine-priest`](../patterns/t3/mythic/T3M1.machine-priest/) | Machine Priest | 3 | T3C1.edge-appliance-bundle, T3R1.multi-resource-orchestrator, M1.local-truth-sheaf, M5.temporal-sheaf | draft/draft/draft |
-| [`T3M2.ritualized-recovery-loop`](../patterns/t3/mythic/T3M2.ritualized-recovery-loop/) | Ritualized Recovery Loop | 4 | C5.failure-ratchet, TC4.self-healing-reconnector, R4.state-ledger, M2.holonomy-detector, M5.temporal-sheaf | draft/draft/draft |
-| [`T3M3.sheaf-of-services`](../patterns/t3/mythic/T3M3.sheaf-of-services/) | Sheaf of Services | 2 | M1.local-truth-sheaf, M3.simplicial-task-graph, TR3.edge-control-plane, TC3.scheduled-herald | draft/draft/draft |
-| [`T3M4.holonomic-watchdog`](../patterns/t3/mythic/T3M4.holonomic-watchdog/) | Holonomic Watchdog | 3 | M2.holonomy-detector, TC3.scheduled-herald, TC4.self-healing-reconnector, R4.state-ledger | draft/draft/draft |
-| [`T3M5.intent-bound-runtime`](../patterns/t3/mythic/T3M5.intent-bound-runtime/) | Intent-Bound Runtime | 2 | M4.local-topos-runtime, M5.temporal-sheaf, TR3.edge-control-plane, R5.capability-mount | draft/draft/draft |
+| [`T3M2.ritualized-recovery-loop`](../patterns/t3/mythic/T3M2.ritualized-recovery-loop/) | Ritualized Recovery Loop | 4 | C5.failure-ratchet, T2C4.self-healing-reconnector, R4.state-ledger, M2.holonomy-detector, M5.temporal-sheaf | draft/draft/draft |
+| [`T3M3.sheaf-of-services`](../patterns/t3/mythic/T3M3.sheaf-of-services/) | Sheaf of Services | 2 | M1.local-truth-sheaf, M3.simplicial-task-graph, T2R3.edge-control-plane, T2C3.scheduled-herald | draft/draft/draft |
+| [`T3M4.holonomic-watchdog`](../patterns/t3/mythic/T3M4.holonomic-watchdog/) | Holonomic Watchdog | 3 | M2.holonomy-detector, T2C3.scheduled-herald, T2C4.self-healing-reconnector, R4.state-ledger | draft/draft/draft |
+| [`T3M5.intent-bound-runtime`](../patterns/t3/mythic/T3M5.intent-bound-runtime/) | Intent-Bound Runtime | 2 | M4.local-topos-runtime, M5.temporal-sheaf, T2R3.edge-control-plane, R5.capability-mount | draft/draft/draft |
