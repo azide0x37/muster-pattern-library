@@ -34,6 +34,7 @@ graph TD
   TR1["TR1.bluetooth-audio-gateway<br/>Bluetooth Audio Gateway"]
   TR2["TR2.lazy-capability-media-bus<br/>Lazy Capability Media Bus"]
   TR3["TR3.edge-control-plane<br/>Edge Control Plane"]
+  TR4["TR4.device-triggered-conveyor<br/>Device-Triggered Conveyor"]
   TC1 --> T3C1
   TC3 --> T3C1
   TC4 --> T3C1
@@ -95,4 +96,12 @@ graph TD
   R1 --> TR3
   R2 --> TR3
   R4 --> TR3
+  C1 --> TR4
+  C2 --> TR4
+  C4 --> TR4
+  C5 --> TR4
+  R2 --> TR4
+  R5 --> TR4
+  TC1 --> TR4
+  TC3 --> TR4
 ```

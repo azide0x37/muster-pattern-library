@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 try:
-    from completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_STATUS, is_production_beta
+    from completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS, is_production_beta
     from patternlib import Pattern, PatternError, pattern_index, validate_all
 except ModuleNotFoundError:
-    from tools.completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_STATUS, is_production_beta
+    from tools.completion import FLAGSHIP_CHAIN, PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUS, is_production_beta
     from tools.patternlib import Pattern, PatternError, pattern_index, validate_all
 
 
@@ -44,6 +44,7 @@ REQUIRED_ARTIFACTS = {
         "units/muster-nas-conveyor.service",
         "units/muster-nas-conveyor.timer",
         "scripts/convey.sh",
+        "scripts/wait-for-hot-capacity.sh",
         "scripts/install.sh",
         "scripts/doctor.sh",
         "examples/minimal/README.md",
@@ -81,6 +82,31 @@ REQUIRED_ARTIFACTS = {
         "scripts/doctor.sh",
         "examples/minimal/README.md",
     },
+    "R2.device-binding": {
+        "udev/90-muster-device-binding.rules",
+        "units/muster-device-bound@.service",
+        "scripts/device-bound-run.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "examples/minimal/README.md",
+    },
+    "R5.capability-mount": {
+        "units/muster-capability@.service",
+        "scripts/check-capability.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "examples/minimal/README.md",
+    },
+    "TR4.device-triggered-conveyor": {
+        "udev/90-muster-device-conveyor.rules",
+        "units/muster-device-conveyor@.service",
+        "units/muster-device-conveyor-drain.service",
+        "units/muster-device-conveyor-drain.timer",
+        "scripts/device-convey.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "examples/minimal/README.md",
+    },
 }
 
 
@@ -110,18 +136,18 @@ def _fail_on_placeholders(pattern: Pattern, relpaths: set[str]) -> None:
 
 def check_production_beta(patterns: list[Pattern]) -> None:
     index = pattern_index(patterns)
-    missing = sorted(FLAGSHIP_CHAIN - set(index))
+    missing = sorted(PRODUCTION_BETA_PATTERNS - set(index))
     if missing:
-        raise PatternError(f"missing flagship patterns: {', '.join(missing)}")
+        raise PatternError(f"missing production-beta patterns: {', '.join(missing)}")
 
     for pattern in patterns:
-        if is_production_beta(pattern) and pattern.id not in FLAGSHIP_CHAIN:
-            raise PatternError(f"{pattern.path}: only flagship-chain patterns may claim production-beta status")
+        if is_production_beta(pattern) and pattern.id not in PRODUCTION_BETA_PATTERNS:
+            raise PatternError(f"{pattern.path}: only production-beta patterns may claim production-beta status")
 
-    for pattern_id in sorted(FLAGSHIP_CHAIN):
+    for pattern_id in sorted(PRODUCTION_BETA_PATTERNS):
         pattern = index[pattern_id]
         if pattern.data["status"] != PRODUCTION_BETA_STATUS:
-            raise PatternError(f"{pattern.path}: flagship pattern must be usable/reviewed/reviewed")
+            raise PatternError(f"{pattern.path}: production-beta pattern must be usable/reviewed/reviewed")
         required = REQUIRED_ARTIFACTS[pattern_id]
         actual = _artifact_paths(pattern)
         missing_artifacts = sorted(required - actual)
@@ -140,7 +166,7 @@ def main() -> int:
     except PatternError as exc:
         print(f"production-beta check failed: {exc}")
         return 1
-    print(f"production-beta ok for {len(FLAGSHIP_CHAIN)} flagship patterns")
+    print(f"production-beta ok for {len(PRODUCTION_BETA_PATTERNS)} patterns")
     return 0
 
 

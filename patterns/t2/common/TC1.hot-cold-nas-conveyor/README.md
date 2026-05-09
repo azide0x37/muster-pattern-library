@@ -8,6 +8,8 @@ Keep hot local storage responsive while lazily moving cold output to NAS or othe
 
 Target platform is Debian/Raspberry Pi OS with systemd. Hot data lives under `/var/cache/muster/hot`; cold data is exposed at `/mnt/muster/cold` through the lazy mount pattern. `scripts/convey.sh` defaults to a mock root and uses real paths only with `--apply`.
 
+`scripts/wait-for-hot-capacity.sh` handles backpressure. If hot storage does not have enough free space for a new job, it records `waiting_for_capacity`, runs one configured drain command, waits, and retries until capacity is available or a timeout expires.
+
 ## When to use this
 
 Use this when the capability needs to be repeatable across a small Linux appliance.
@@ -46,6 +48,8 @@ Run `scripts/install.sh` first as a dry run. `--apply` installs the conveyor ser
 Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
 
 The doctor verifies unit files when systemd tooling exists and proves a mock hot-to-cold transfer in temporary storage.
+
+The doctor also exercises the backpressure path by simulating an initially full hot store, running a drain command, and continuing once capacity is available.
 
 ## Failure modes
 

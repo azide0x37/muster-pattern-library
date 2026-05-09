@@ -30,6 +30,14 @@ FLAGSHIP_CHAIN = {
     "T3C1.edge-appliance-bundle",
 }
 
+DEVICE_TRIGGERED_CONVEYOR_CHAIN = {
+    "R2.device-binding",
+    "R5.capability-mount",
+    "TR4.device-triggered-conveyor",
+}
+
+PRODUCTION_BETA_PATTERNS = FLAGSHIP_CHAIN | DEVICE_TRIGGERED_CONVEYOR_CHAIN
+
 PRODUCTION_BETA_STATUS = {
     "implementation": "usable",
     "docs": "reviewed",

@@ -20,6 +20,9 @@ Tech II Rare:
     - T1 Rare
     - T2 Common
 
+  example:
+    - TR4.device-triggered-conveyor
+
 Tech II Mythic:
   may_use:
     - T1 Common

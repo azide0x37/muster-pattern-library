@@ -39,3 +39,9 @@ Manual recovery enters through `muster-recover@.service`. Recovery should target
 ## Boot Contract
 
 Network storage must not block boot. Mounts use lazy materialization, bounded timeouts, and `nofail`-style behavior.
+
+## Device Conveyor Contract
+
+A physical device event must hand off to systemd through udev `SYSTEMD_WANTS`; udev must not run the ingest itself.
+
+Before ingest starts, the job must prove the destination capability and confirm enough hot-storage capacity. If capacity is temporarily unavailable because the hot/cold conveyor is still flushing, the job records `waiting_for_capacity`, runs a drain command or waits for the drain timer, and continues when capacity becomes available. If the timeout expires, it exits as a temporary failure and leaves inspectable state.

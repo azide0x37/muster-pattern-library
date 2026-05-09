@@ -8,7 +8,7 @@ lib_dir=${LIB_DIR:-/usr/local/lib/muster}
 config_dir=${CONFIG_DIR:-/etc/muster}
 
 usage() {
-  printf '%s\n' "Install R2.device-binding artifacts for Debian/RPi OS."
+  printf '%s\n' "Install TR4.device-triggered-conveyor artifacts for Debian/RPi OS."
   printf '%s\n' "Default mode is dry-run; use --apply to copy files."
 }
 
@@ -38,7 +38,9 @@ if [ "$apply" -eq 1 ] && [ "$(id -u)" -ne 0 ]; then
 fi
 
 run install -d -m 0755 "$unit_dir" "$udev_dir" "$lib_dir" "$config_dir"
-run install -m 0644 "$pattern_dir/units/muster-device-bound@.service" "$unit_dir/muster-device-bound@.service"
-run install -m 0644 "$pattern_dir/udev/90-muster-device-binding.rules" "$udev_dir/90-muster-device-binding.rules"
-run install -m 0755 "$pattern_dir/scripts/device-bound-run.sh" "$lib_dir/device-bound-run.sh"
-printf '%s\n' "install plan complete for R2.device-binding"
+run install -m 0644 "$pattern_dir/units/muster-device-conveyor@.service" "$unit_dir/muster-device-conveyor@.service"
+run install -m 0644 "$pattern_dir/units/muster-device-conveyor-drain.service" "$unit_dir/muster-device-conveyor-drain.service"
+run install -m 0644 "$pattern_dir/units/muster-device-conveyor-drain.timer" "$unit_dir/muster-device-conveyor-drain.timer"
+run install -m 0644 "$pattern_dir/udev/90-muster-device-conveyor.rules" "$udev_dir/90-muster-device-conveyor.rules"
+run install -m 0755 "$pattern_dir/scripts/device-convey.sh" "$lib_dir/device-convey.sh"
+printf '%s\n' "install plan complete for TR4.device-triggered-conveyor"

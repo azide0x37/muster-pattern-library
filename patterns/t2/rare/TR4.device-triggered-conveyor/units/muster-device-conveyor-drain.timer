@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster device conveyor drain schedule
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=10m
+Persistent=true
+RandomizedDelaySec=60s
+Unit=muster-device-conveyor-drain.service
+
+[Install]
+WantedBy=timers.target

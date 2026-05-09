@@ -19,10 +19,10 @@ Generated from `patterns/**/manifest.yaml`.
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
 | [`R1.socket-anteroom`](../patterns/t1/rare/R1.socket-anteroom/) | Socket Anteroom | 7 | - | draft/draft/draft |
-| [`R2.device-binding`](../patterns/t1/rare/R2.device-binding/) | Device Binding | 6 | - | draft/draft/draft |
+| [`R2.device-binding`](../patterns/t1/rare/R2.device-binding/) | Device Binding | 6 | - | usable/reviewed/reviewed |
 | [`R3.cgroup-governor`](../patterns/t1/rare/R3.cgroup-governor/) | Cgroup Governor | 6 | - | draft/draft/draft |
 | [`R4.state-ledger`](../patterns/t1/rare/R4.state-ledger/) | State Ledger | 6 | - | draft/draft/draft |
-| [`R5.capability-mount`](../patterns/t1/rare/R5.capability-mount/) | Capability Mount | 5 | - | draft/draft/draft |
+| [`R5.capability-mount`](../patterns/t1/rare/R5.capability-mount/) | Capability Mount | 5 | - | usable/reviewed/reviewed |
 
 ### Mythic
 
@@ -53,6 +53,7 @@ Generated from `patterns/**/manifest.yaml`.
 | [`TR1.bluetooth-audio-gateway`](../patterns/t2/rare/TR1.bluetooth-audio-gateway/) | Bluetooth Audio Gateway | 6 | TC4.self-healing-reconnector, TC5.local-sidecar-bridge, R2.device-binding, R4.state-ledger | draft/draft/draft |
 | [`TR2.lazy-capability-media-bus`](../patterns/t2/rare/TR2.lazy-capability-media-bus/) | Lazy Capability Media Bus | 5 | TC1.hot-cold-nas-conveyor, R1.socket-anteroom, R3.cgroup-governor, R5.capability-mount | draft/draft/draft |
 | [`TR3.edge-control-plane`](../patterns/t2/rare/TR3.edge-control-plane/) | Edge Control Plane | 5 | TC2.dropfolder-spooler, TC3.scheduled-herald, TC5.local-sidecar-bridge, R1.socket-anteroom, R2.device-binding, R4.state-ledger | draft/draft/draft |
+| [`TR4.device-triggered-conveyor`](../patterns/t2/rare/TR4.device-triggered-conveyor/) | Device-Triggered Conveyor | 5 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet, R2.device-binding, R5.capability-mount, TC1.hot-cold-nas-conveyor, TC3.scheduled-herald | usable/reviewed/reviewed |
 
 ## Tech 3
 

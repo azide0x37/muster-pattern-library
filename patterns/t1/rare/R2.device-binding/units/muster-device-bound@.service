@@ -1,5 +1,5 @@
 [Unit]
-Description=Muster device binding example for /dev/%I
+Description=Muster device-bound worker for /dev/%I
 Documentation=file:README.md
 After=dev-%i.device
 BindsTo=dev-%i.device

@@ -16,6 +16,7 @@ test -f "$pattern_dir/README.md"
 test -f "$pattern_dir/units/muster-nas-conveyor.service"
 test -f "$pattern_dir/units/muster-nas-conveyor.timer"
 test -x "$pattern_dir/scripts/convey.sh"
+test -x "$pattern_dir/scripts/wait-for-hot-capacity.sh"
 
 if command -v systemd-analyze >/dev/null 2>&1; then
   systemd-analyze verify "$pattern_dir/units/muster-nas-conveyor.service" "$pattern_dir/units/muster-nas-conveyor.timer"
@@ -27,4 +28,8 @@ else
 fi
 
 MUSTER_MOCK_ROOT=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-tc1-doctor} "$pattern_dir/scripts/convey.sh" --once >/dev/null
+mock_root=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-tc1-doctor-capacity}
+mkdir -p "$mock_root/run/muster"
+MUSTER_MOCK_ROOT="$mock_root" MUSTER_MOCK_BACKPRESSURE=1 MIN_HOT_FREE_BYTES=1 CAPACITY_TIMEOUT_SECONDS=5 CAPACITY_INTERVAL_SECONDS=1 DRAIN_COMMAND="touch '$mock_root/run/muster/capacity-ready'" "$pattern_dir/scripts/wait-for-hot-capacity.sh" >/dev/null
+test -s "$mock_root/run/muster/hot-capacity.json"
 printf '%s\n' "ok: TC1.hot-cold-nas-conveyor"

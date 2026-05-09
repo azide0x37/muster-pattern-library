@@ -26,6 +26,7 @@ artifacts:
     - units/muster-nas-conveyor.timer
   scripts:
     - scripts/convey.sh
+    - scripts/wait-for-hot-capacity.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:

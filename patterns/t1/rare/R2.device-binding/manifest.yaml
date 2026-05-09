@@ -16,9 +16,13 @@ composes_with:
   - C1.service-capsule
   - C5.failure-ratchet
 artifacts:
+  udev:
+    - udev/90-muster-device-binding.rules
   units:
     - units/example.service
+    - units/muster-device-bound@.service
   scripts:
+    - scripts/device-bound-run.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -26,6 +30,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

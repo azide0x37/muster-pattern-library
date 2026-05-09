@@ -1,5 +1,5 @@
 [Unit]
-Description=Muster capability mount example
+Description=Muster capability check for %i
 Documentation=file:README.md
 After=mnt-muster-cold.automount
 Wants=mnt-muster-cold.automount
@@ -10,7 +10,7 @@ Type=oneshot
 User=muster
 Group=muster
 EnvironmentFile=-/etc/muster/capability-mount.env
-ExecStart=/usr/local/lib/muster/check-capability.sh cold-storage /mnt/muster/cold --apply
+ExecStart=/usr/local/lib/muster/check-capability.sh %i /mnt/muster/cold --apply
 RuntimeDirectory=muster
 StateDirectory=muster/capabilities
 NoNewPrivileges=true
