@@ -1,7 +1,20 @@
 [Unit]
-Description=Muster example for Hot/Cold NAS Conveyor
+Description=Muster hot/cold NAS conveyor example
 Documentation=file:README.md
+After=mnt-muster-cold.automount
+Wants=mnt-muster-cold.automount
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern TC1.hot-cold-nas-conveyor'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/nas-conveyor.env
+ExecStart=/usr/local/lib/muster/convey --once --apply
+RuntimeDirectory=muster
+StateDirectory=muster/nas-conveyor
+CacheDirectory=muster/hot
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster /var/cache/muster /mnt/muster/cold

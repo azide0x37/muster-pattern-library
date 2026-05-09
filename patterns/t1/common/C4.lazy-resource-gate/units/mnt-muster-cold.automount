@@ -1,0 +1,10 @@
+[Unit]
+Description=Muster lazy cold-storage automount
+Documentation=file:README.md
+
+[Automount]
+Where=/mnt/muster/cold
+TimeoutIdleSec=300
+
+[Install]
+WantedBy=multi-user.target

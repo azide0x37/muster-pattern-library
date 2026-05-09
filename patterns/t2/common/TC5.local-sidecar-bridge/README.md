@@ -4,6 +4,10 @@
 
 Poll or normalize a local subsystem and publish clean state outward through MQTT, HTTP, files, or another bridge.
 
+## Production beta contract
+
+Target platform is Debian/Raspberry Pi OS with systemd. The beta artifact bridges `/run/muster/status.json` to a local sidecar payload file. Network publishing is intentionally left outside the default path until credentials and endpoints are reviewed.
+
 ## When to use this
 
 Use this when the capability needs to be repeatable across a small Linux appliance.
@@ -34,9 +38,13 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 
 Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
 
+Run `scripts/install.sh` first as a dry run. `--apply` installs the bridge service, timer, and helper script without enabling network egress.
+
 ## Verification
 
 Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+
+The doctor creates a mock status file and proves the local bridge payload is generated.
 
 ## Failure modes
 

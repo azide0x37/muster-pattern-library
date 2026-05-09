@@ -1,7 +1,17 @@
 [Unit]
-Description=Muster example for Scheduled Herald
+Description=Muster scheduled herald example
 Documentation=file:README.md
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern TC3.scheduled-herald'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/herald.env
+ExecStart=/usr/local/lib/muster/collect-status.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/herald
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

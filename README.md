@@ -38,3 +38,4 @@ The first milestone is a complete, machine-checkable scaffold for the planned Mu
 - Example appliance sketches for edge bundles, Bluetooth audio, DVD ripping, and G-code spooling
 
 `docs/index.md` and `docs/pattern-graph.md` are generated from manifests. Do not hand-edit them.
+`docs/completion.md` is also generated and reports maturity from manifest status fields.

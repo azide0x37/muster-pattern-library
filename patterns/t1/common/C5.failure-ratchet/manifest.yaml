@@ -17,7 +17,10 @@ composes_with:
 artifacts:
   units:
     - units/example.service
+    - units/muster-recover@.service
   scripts:
+    - scripts/failure-prone-job.sh
+    - scripts/muster-recover.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -25,6 +28,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

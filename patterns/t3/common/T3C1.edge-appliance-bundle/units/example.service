@@ -1,7 +1,20 @@
 [Unit]
-Description=Muster example for Edge Appliance Bundle
+Description=Muster edge appliance health probe
 Documentation=file:README.md
+After=muster-herald.service
+Wants=muster-herald.service
+OnFailure=muster-recover@%n.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern T3C1.edge-appliance-bundle'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/appliance.env
+ExecStart=/usr/local/lib/muster/appliance-doctor.sh --once --apply
+RuntimeDirectory=muster
+StateDirectory=muster/appliance
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

@@ -1,0 +1,15 @@
+[Unit]
+Description=Muster cold-storage mount
+Documentation=file:README.md
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=//nas.example.invalid/muster
+Where=/mnt/muster/cold
+Type=cifs
+Options=noauto,x-systemd.automount,_netdev,nofail,credentials=/etc/muster/nas.credentials,uid=muster,gid=muster,file_mode=0640,dir_mode=0750
+TimeoutSec=15
+
+[Install]
+WantedBy=multi-user.target

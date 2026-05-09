@@ -1,7 +1,13 @@
 [Unit]
-Description=Muster example for Lazy Resource Gate
+Description=Muster lazy resource gate readiness check
 Documentation=file:README.md
+After=mnt-muster-cold.automount
+Wants=mnt-muster-cold.automount
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern C4.lazy-resource-gate'
+User=muster
+Group=muster
+ExecStart=/usr/bin/test -d /mnt/muster/cold
+NoNewPrivileges=true
+PrivateTmp=true

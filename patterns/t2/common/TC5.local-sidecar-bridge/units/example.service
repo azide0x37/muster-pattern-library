@@ -1,7 +1,19 @@
 [Unit]
-Description=Muster example for Local Sidecar Bridge
+Description=Muster local sidecar bridge example
 Documentation=file:README.md
+After=muster-herald.service
+Wants=muster-herald.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern TC5.local-sidecar-bridge'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/sidecar-bridge.env
+ExecStart=/usr/local/lib/muster/bridge-status.sh --once --apply
+RuntimeDirectory=muster
+StateDirectory=muster/sidecar-bridge
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

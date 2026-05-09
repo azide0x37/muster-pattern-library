@@ -4,6 +4,10 @@
 
 Keep hot local storage responsive while lazily moving cold output to NAS or other network storage.
 
+## Production beta contract
+
+Target platform is Debian/Raspberry Pi OS with systemd. Hot data lives under `/var/cache/muster/hot`; cold data is exposed at `/mnt/muster/cold` through the lazy mount pattern. `scripts/convey.sh` defaults to a mock root and uses real paths only with `--apply`.
+
 ## When to use this
 
 Use this when the capability needs to be repeatable across a small Linux appliance.
@@ -35,9 +39,13 @@ A small set of systemd-facing artifacts plus scripts and examples document the o
 
 Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
 
+Run `scripts/install.sh` first as a dry run. `--apply` installs the conveyor service, timer, and helper script, but does not enable the timer automatically.
+
 ## Verification
 
 Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+
+The doctor verifies unit files when systemd tooling exists and proves a mock hot-to-cold transfer in temporary storage.
 
 ## Failure modes
 

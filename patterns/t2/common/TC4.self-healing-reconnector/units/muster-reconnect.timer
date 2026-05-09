@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster reconnector fallback sweep
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=3m
+OnUnitActiveSec=10m
+Persistent=true
+RandomizedDelaySec=60s
+Unit=muster-reconnect@example.service
+
+[Install]
+WantedBy=timers.target

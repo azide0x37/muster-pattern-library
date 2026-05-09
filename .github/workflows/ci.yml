@@ -14,9 +14,12 @@ jobs:
         run: uv run python tools/validate_patterns.py
       - name: Check composition rules
         run: uv run python tools/check_composition_rules.py
+      - name: Check production-beta flagship chain
+        run: uv run python tools/check_production_beta.py
       - name: Check generated docs
         run: |
           uv run python tools/render_index.py --check
           uv run python tools/render_graph.py --check
+          uv run python tools/render_completion.py --check
       - name: Run unit tests
         run: uv run python -m unittest discover tests

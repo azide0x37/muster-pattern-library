@@ -1,0 +1,18 @@
+[Unit]
+Description=Muster scheduled health herald
+Documentation=file:README.md
+OnFailure=muster-recover@%n.service
+
+[Service]
+Type=oneshot
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/herald.env
+ExecStart=/usr/local/lib/muster/collect-status.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/herald
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

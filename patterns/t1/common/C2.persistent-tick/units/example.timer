@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster persistent tick schedule
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=15m
+Persistent=true
+RandomizedDelaySec=90s
+Unit=example.service
+
+[Install]
+WantedBy=timers.target

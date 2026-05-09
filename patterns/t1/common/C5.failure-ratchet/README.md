@@ -4,6 +4,10 @@
 
 Turn service failure into a first-class event that can log, notify, quarantine, retry, or degrade deliberately.
 
+## Production beta contract
+
+Target platform is Debian/Raspberry Pi OS with systemd. The example job uses `OnFailure=muster-recover@%n.service`, while the recovery handler records a degraded state under `/run/muster`. Both helper scripts default to mock mode and require `--apply` for real runtime paths.
+
 ## When to use this
 
 Use this when the capability needs to be repeatable across a small Linux appliance.
@@ -32,9 +36,13 @@ None.
 
 Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
 
+Run `scripts/install.sh` without arguments to inspect the unit and helper copy plan. Use `--apply` only after deciding how the target host should notify operators.
+
 ## Verification
 
 Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+
+The doctor validates the recovery unit shape and runs both the protected job and recovery script against a temporary mock root.
 
 ## Failure modes
 

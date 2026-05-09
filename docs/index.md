@@ -8,11 +8,11 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`C1.service-capsule`](../patterns/t1/common/C1.service-capsule/) | Service Capsule | 9 | - | draft/draft/draft |
-| [`C2.persistent-tick`](../patterns/t1/common/C2.persistent-tick/) | Persistent Tick | 9 | - | draft/draft/draft |
+| [`C1.service-capsule`](../patterns/t1/common/C1.service-capsule/) | Service Capsule | 9 | - | usable/reviewed/reviewed |
+| [`C2.persistent-tick`](../patterns/t1/common/C2.persistent-tick/) | Persistent Tick | 9 | - | usable/reviewed/reviewed |
 | [`C3.dropfolder-trigger`](../patterns/t1/common/C3.dropfolder-trigger/) | Dropfolder Trigger | 8 | - | draft/draft/draft |
-| [`C4.lazy-resource-gate`](../patterns/t1/common/C4.lazy-resource-gate/) | Lazy Resource Gate | 8 | - | draft/draft/draft |
-| [`C5.failure-ratchet`](../patterns/t1/common/C5.failure-ratchet/) | Failure Ratchet | 7 | - | draft/draft/draft |
+| [`C4.lazy-resource-gate`](../patterns/t1/common/C4.lazy-resource-gate/) | Lazy Resource Gate | 8 | - | usable/reviewed/reviewed |
+| [`C5.failure-ratchet`](../patterns/t1/common/C5.failure-ratchet/) | Failure Ratchet | 7 | - | usable/reviewed/reviewed |
 
 ### Rare
 
@@ -40,11 +40,11 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`TC1.hot-cold-nas-conveyor`](../patterns/t2/common/TC1.hot-cold-nas-conveyor/) | Hot/Cold NAS Conveyor | 8 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet | draft/draft/draft |
+| [`TC1.hot-cold-nas-conveyor`](../patterns/t2/common/TC1.hot-cold-nas-conveyor/) | Hot/Cold NAS Conveyor | 8 | C1.service-capsule, C2.persistent-tick, C4.lazy-resource-gate, C5.failure-ratchet | usable/reviewed/reviewed |
 | [`TC2.dropfolder-spooler`](../patterns/t2/common/TC2.dropfolder-spooler/) | Dropfolder Spooler | 8 | C1.service-capsule, C3.dropfolder-trigger, C5.failure-ratchet | draft/draft/draft |
-| [`TC3.scheduled-herald`](../patterns/t2/common/TC3.scheduled-herald/) | Scheduled Herald | 8 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | draft/draft/draft |
-| [`TC4.self-healing-reconnector`](../patterns/t2/common/TC4.self-healing-reconnector/) | Self-Healing Reconnector | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | draft/draft/draft |
-| [`TC5.local-sidecar-bridge`](../patterns/t2/common/TC5.local-sidecar-bridge/) | Local Sidecar Bridge | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | draft/draft/draft |
+| [`TC3.scheduled-herald`](../patterns/t2/common/TC3.scheduled-herald/) | Scheduled Herald | 8 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`TC4.self-healing-reconnector`](../patterns/t2/common/TC4.self-healing-reconnector/) | Self-Healing Reconnector | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
+| [`TC5.local-sidecar-bridge`](../patterns/t2/common/TC5.local-sidecar-bridge/) | Local Sidecar Bridge | 7 | C1.service-capsule, C2.persistent-tick, C5.failure-ratchet | usable/reviewed/reviewed |
 
 ### Rare
 
@@ -60,7 +60,7 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`T3C1.edge-appliance-bundle`](../patterns/t3/common/T3C1.edge-appliance-bundle/) | Edge Appliance Bundle | 7 | TC1.hot-cold-nas-conveyor, TC3.scheduled-herald, TC4.self-healing-reconnector, TC5.local-sidecar-bridge | draft/draft/draft |
+| [`T3C1.edge-appliance-bundle`](../patterns/t3/common/T3C1.edge-appliance-bundle/) | Edge Appliance Bundle | 7 | TC1.hot-cold-nas-conveyor, TC3.scheduled-herald, TC4.self-healing-reconnector, TC5.local-sidecar-bridge | usable/reviewed/reviewed |
 
 ### Rare
 

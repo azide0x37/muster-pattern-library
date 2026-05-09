@@ -18,7 +18,9 @@ composes_with:
 artifacts:
   units:
     - units/example.service
+    - units/example.timer
   scripts:
+    - scripts/persistent-tick-run.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -26,6 +28,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

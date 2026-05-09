@@ -4,6 +4,10 @@
 
 Run recurring jobs with a timer that catches up after downtime and reports failure through a bounded oneshot service.
 
+## Production beta contract
+
+Target platform is Debian/Raspberry Pi OS with systemd. The timer uses `Persistent=true`, a randomized delay, and a oneshot service that runs as `muster`. `scripts/persistent-tick-run.sh` writes a timestamped runtime fact in mock mode by default and under `/run/muster` only when invoked with `--apply`.
+
 ## When to use this
 
 Use this when the capability needs to be repeatable across a small Linux appliance.
@@ -32,9 +36,13 @@ None.
 
 Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
 
+Run `scripts/install.sh` without arguments to inspect the copy plan. `--apply` copies the service, timer, and helper script to system locations.
+
 ## Verification
 
 Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+
+The doctor checks the service/timer pair and exercises one mock tick without touching systemd state.
 
 ## Failure modes
 

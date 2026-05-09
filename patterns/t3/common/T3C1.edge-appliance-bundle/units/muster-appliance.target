@@ -1,0 +1,10 @@
+[Unit]
+Description=Muster edge appliance bundle
+Documentation=file:README.md
+Requires=muster-herald.timer muster-nas-conveyor.timer muster-sidecar-bridge.timer muster-reconnect.timer
+Wants=mnt-muster-cold.automount
+After=network-online.target
+AllowIsolate=no
+
+[Install]
+WantedBy=multi-user.target

@@ -1,7 +1,20 @@
 [Unit]
-Description=Muster example for Failure Ratchet
+Description=Muster failure ratchet protected job
 Documentation=file:README.md
+OnFailure=muster-recover@%n.service
+StartLimitIntervalSec=10m
+StartLimitBurst=3
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern C5.failure-ratchet'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/failure-ratchet.env
+ExecStart=/usr/local/lib/muster/failure-prone-job.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/failure-ratchet
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

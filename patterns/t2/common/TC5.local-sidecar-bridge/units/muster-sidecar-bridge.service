@@ -1,0 +1,20 @@
+[Unit]
+Description=Muster local sidecar status bridge
+Documentation=file:README.md
+After=muster-herald.service
+Wants=muster-herald.service
+OnFailure=muster-recover@%n.service
+
+[Service]
+Type=oneshot
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/sidecar-bridge.env
+ExecStart=/usr/local/lib/muster/bridge-status.sh --once --apply
+RuntimeDirectory=muster
+StateDirectory=muster/sidecar-bridge
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster

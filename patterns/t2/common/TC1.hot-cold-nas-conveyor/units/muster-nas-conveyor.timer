@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster hot-to-cold NAS conveyor schedule
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=30m
+Persistent=true
+RandomizedDelaySec=2m
+Unit=muster-nas-conveyor.service
+
+[Install]
+WantedBy=timers.target

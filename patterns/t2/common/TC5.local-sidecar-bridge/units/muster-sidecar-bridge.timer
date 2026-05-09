@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster local sidecar status bridge timer
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=4m
+OnUnitActiveSec=5m
+Persistent=true
+RandomizedDelaySec=45s
+Unit=muster-sidecar-bridge.service
+
+[Install]
+WantedBy=timers.target

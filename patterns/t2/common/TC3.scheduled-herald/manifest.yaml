@@ -20,7 +20,10 @@ composes_with:
 artifacts:
   units:
     - units/example.service
+    - units/muster-herald.service
+    - units/muster-herald.timer
   scripts:
+    - scripts/collect-status.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -28,6 +31,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: usable
+  docs: reviewed
+  tests: reviewed

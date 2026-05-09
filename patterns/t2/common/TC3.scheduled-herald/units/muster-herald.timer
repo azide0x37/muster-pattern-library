@@ -1,0 +1,13 @@
+[Unit]
+Description=Muster scheduled health herald timer
+Documentation=file:README.md
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=5m
+Persistent=true
+RandomizedDelaySec=30s
+Unit=muster-herald.service
+
+[Install]
+WantedBy=timers.target

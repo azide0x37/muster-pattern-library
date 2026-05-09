@@ -17,6 +17,8 @@ composes_with:
 artifacts:
   units:
     - units/example.service
+    - units/mnt-muster-cold.automount
+    - units/mnt-muster-cold.mount
   scripts:
     - scripts/install.sh
     - scripts/doctor.sh
@@ -25,6 +27,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: usable
+  docs: reviewed
+  tests: reviewed
