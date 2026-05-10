@@ -1,7 +1,17 @@
 [Unit]
-Description=Muster example for Holonomy Detector
+Description=Muster holonomy detector loop check example
 Documentation=file:README.md
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern M2.holonomy-detector'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/holonomy-detector.env
+ExecStart=/usr/local/lib/muster/holonomy-check.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/holonomy
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster/holonomy

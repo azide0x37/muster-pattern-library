@@ -14,7 +14,7 @@ Do not use this when a one-off shell command is clearer than a managed operation
 
 ## System shape
 
-A small set of systemd-facing artifacts plus scripts and examples document the operational boundary.
+Practical kernel: evaluate a local proposition against explicit evidence. Minimum useful implementation: `scripts/topos-evaluate.sh` proves or rejects `evidence_exists` for a path. Full speculative version: policy-bound logic over targets, services, and observed devices. De-mythicize it as evidence-gated local policy.
 
 ## Subpatterns
 
@@ -23,22 +23,23 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` runs the evidence evaluator.
+- `scripts/topos-evaluate.sh` records proposition truth from a concrete evidence path.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` checks the unit and proves mock evidence evaluation.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor creates mock evidence and verifies `local-topos-runtime.json`.
 
 ## Failure modes
 
-Expected failures should leave inspectable logs, status files, or failed artifacts.
+Absent evidence fails the proposition and records the evidence path that was checked.
 
 ## Rollback
 
@@ -50,4 +51,4 @@ Keep any actuator behind explicit policy; logic engines should not gain ambient 
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable minimal kernel. Future work is binding propositions to explicit policy files.

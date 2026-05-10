@@ -23,18 +23,19 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` is a reviewed ledger-writer service artifact.
+- `scripts/state-ledger-write.sh` writes runtime status JSON and durable event lines.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` proves mocked runtime and durable ledger writes.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor writes a mock ledger event and verifies both runtime status and durable event files.
 
 ## Failure modes
 
@@ -50,4 +51,4 @@ Review users, paths, credentials, sockets, and device permissions before deployi
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add richer fact schemas without changing the durable ledger boundary.

@@ -14,7 +14,7 @@ Do not use this when a one-off shell command is clearer than a managed operation
 
 ## System shape
 
-A small set of systemd-facing artifacts plus scripts and examples document the operational boundary.
+Practical kernel: run a loop through named local states and verify that the final state equals the start. Minimum useful implementation: `scripts/holonomy-check.sh` evaluates a declared state loop and records drift. Full speculative version: richer checks over mounts, processes, devices, and queues. De-mythicize it as a conservative loop invariant check.
 
 ## Subpatterns
 
@@ -23,18 +23,19 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` runs the holonomy check.
+- `scripts/holonomy-check.sh` evaluates a state loop and records status JSON.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` checks the unit and proves a closed mocked loop.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor runs a closed mock loop and verifies `holonomy-detector.json`.
 
 ## Failure modes
 
@@ -50,4 +51,4 @@ Review users, paths, credentials, sockets, and device permissions before deployi
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable minimal kernel. Future work is attaching loop steps to real device and mount probes.

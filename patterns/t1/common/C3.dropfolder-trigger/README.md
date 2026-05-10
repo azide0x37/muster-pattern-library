@@ -23,18 +23,21 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` is a reviewed processor service artifact.
+- `units/muster-dropfolder.path` watches the inbox.
+- `units/muster-dropfolder.service` runs the processor.
+- `scripts/dropfolder-process.sh` claims files, writes done or failed outputs, and records status JSON.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` checks units and proves a mocked inbox handoff.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install, or review the same artifacts before applying on a target host.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor creates a mock inbox file, runs `scripts/dropfolder-process.sh`, and verifies the processed output and status JSON.
 
 ## Failure modes
 
@@ -50,4 +53,4 @@ Review users, paths, credentials, sockets, and device permissions before deployi
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add file-type-specific processors without changing the inbox claim and status behavior.

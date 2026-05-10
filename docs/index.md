@@ -8,32 +8,32 @@ Generated from `patterns/**/manifest.yaml`.
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`C1.service-capsule`](../patterns/t1/common/C1.service-capsule/) | Service Capsule | 9 | - | usable/reviewed/reviewed |
-| [`C2.persistent-tick`](../patterns/t1/common/C2.persistent-tick/) | Persistent Tick | 9 | - | usable/reviewed/reviewed |
-| [`C3.dropfolder-trigger`](../patterns/t1/common/C3.dropfolder-trigger/) | Dropfolder Trigger | 8 | - | draft/draft/draft |
-| [`C4.lazy-resource-gate`](../patterns/t1/common/C4.lazy-resource-gate/) | Lazy Resource Gate | 8 | - | usable/reviewed/reviewed |
-| [`C5.failure-ratchet`](../patterns/t1/common/C5.failure-ratchet/) | Failure Ratchet | 7 | - | usable/reviewed/reviewed |
-| [`C6.lifecycle-capsule`](../patterns/t1/common/C6.lifecycle-capsule/) | Lifecycle Capsule | 8 | - | usable/reviewed/reviewed |
+| [`C1.service-capsule`](../patterns/t1/common/C1.service-capsule/) | Service Capsule | 9 | - | stable/stable/stable |
+| [`C2.persistent-tick`](../patterns/t1/common/C2.persistent-tick/) | Persistent Tick | 9 | - | stable/stable/stable |
+| [`C3.dropfolder-trigger`](../patterns/t1/common/C3.dropfolder-trigger/) | Dropfolder Trigger | 8 | - | stable/stable/stable |
+| [`C4.lazy-resource-gate`](../patterns/t1/common/C4.lazy-resource-gate/) | Lazy Resource Gate | 8 | - | stable/stable/stable |
+| [`C5.failure-ratchet`](../patterns/t1/common/C5.failure-ratchet/) | Failure Ratchet | 7 | - | stable/stable/stable |
+| [`C6.lifecycle-capsule`](../patterns/t1/common/C6.lifecycle-capsule/) | Lifecycle Capsule | 8 | - | stable/stable/stable |
 
 ### Rare
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`R1.socket-anteroom`](../patterns/t1/rare/R1.socket-anteroom/) | Socket Anteroom | 7 | - | draft/draft/draft |
+| [`R1.socket-anteroom`](../patterns/t1/rare/R1.socket-anteroom/) | Socket Anteroom | 7 | - | stable/stable/stable |
 | [`R2.device-binding`](../patterns/t1/rare/R2.device-binding/) | Device Binding | 6 | - | stable/stable/stable |
-| [`R3.cgroup-governor`](../patterns/t1/rare/R3.cgroup-governor/) | Cgroup Governor | 6 | - | draft/draft/draft |
-| [`R4.state-ledger`](../patterns/t1/rare/R4.state-ledger/) | State Ledger | 6 | - | draft/draft/draft |
+| [`R3.cgroup-governor`](../patterns/t1/rare/R3.cgroup-governor/) | Cgroup Governor | 6 | - | stable/stable/stable |
+| [`R4.state-ledger`](../patterns/t1/rare/R4.state-ledger/) | State Ledger | 6 | - | stable/stable/stable |
 | [`R5.capability-mount`](../patterns/t1/rare/R5.capability-mount/) | Capability Mount | 5 | - | stable/stable/stable |
 
 ### Mythic
 
 | ID | Pattern | MRL | Subpatterns | Status |
 | --- | --- | ---: | --- | --- |
-| [`M1.local-truth-sheaf`](../patterns/t1/mythic/M1.local-truth-sheaf/) | Local Truth Sheaf | 4 | - | draft/draft/draft |
-| [`M2.holonomy-detector`](../patterns/t1/mythic/M2.holonomy-detector/) | Holonomy Detector | 4 | - | draft/draft/draft |
-| [`M3.simplicial-task-graph`](../patterns/t1/mythic/M3.simplicial-task-graph/) | Simplicial Task Graph | 3 | - | draft/draft/draft |
-| [`M4.local-topos-runtime`](../patterns/t1/mythic/M4.local-topos-runtime/) | Local Topos Runtime | 2 | - | draft/draft/draft |
-| [`M5.temporal-sheaf`](../patterns/t1/mythic/M5.temporal-sheaf/) | Temporal Sheaf | 3 | - | draft/draft/draft |
+| [`M1.local-truth-sheaf`](../patterns/t1/mythic/M1.local-truth-sheaf/) | Local Truth Sheaf | 4 | - | stable/stable/stable |
+| [`M2.holonomy-detector`](../patterns/t1/mythic/M2.holonomy-detector/) | Holonomy Detector | 4 | - | stable/stable/stable |
+| [`M3.simplicial-task-graph`](../patterns/t1/mythic/M3.simplicial-task-graph/) | Simplicial Task Graph | 3 | - | stable/stable/stable |
+| [`M4.local-topos-runtime`](../patterns/t1/mythic/M4.local-topos-runtime/) | Local Topos Runtime | 2 | - | stable/stable/stable |
+| [`M5.temporal-sheaf`](../patterns/t1/mythic/M5.temporal-sheaf/) | Temporal Sheaf | 3 | - | stable/stable/stable |
 
 ## Tech 2
 

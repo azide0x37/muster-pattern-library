@@ -1,7 +1,17 @@
 [Unit]
-Description=Muster example for Local Truth Sheaf
+Description=Muster local truth sheaf reducer example
 Documentation=file:README.md
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern M1.local-truth-sheaf'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/local-truth-sheaf.env
+ExecStart=/usr/local/lib/muster/local-truth-reduce.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/local-truth
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster/local-truth

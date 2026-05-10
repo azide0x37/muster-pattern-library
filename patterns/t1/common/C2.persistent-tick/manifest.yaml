@@ -38,6 +38,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: usable
-  docs: reviewed
-  tests: reviewed
+  implementation: stable
+  docs: stable
+  tests: stable

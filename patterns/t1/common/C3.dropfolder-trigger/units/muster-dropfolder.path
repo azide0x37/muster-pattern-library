@@ -1,0 +1,10 @@
+[Unit]
+Description=Muster dropfolder trigger inbox watcher
+Documentation=file:README.md
+
+[Path]
+PathExistsGlob=/var/lib/muster/dropfolder/inbox/*
+Unit=muster-dropfolder.service
+
+[Install]
+WantedBy=multi-user.target

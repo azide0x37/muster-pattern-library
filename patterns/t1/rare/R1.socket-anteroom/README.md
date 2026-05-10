@@ -23,18 +23,21 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` is a reviewed socket-activated service artifact.
+- `units/muster-anteroom.socket` binds the local anteroom endpoint.
+- `units/muster-anteroom.service` emits a bounded response through the activated socket.
+- `scripts/socket-anteroom-serve.sh` writes status JSON and a local response.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` checks units and proves the mocked responder.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor verifies the socket and service artifacts, runs the responder in mock mode, and checks the status JSON.
 
 ## Failure modes
 
@@ -50,4 +53,4 @@ Bind to localhost by default and treat every socket as an API surface.
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add authenticated verbs while keeping localhost binding as the default.

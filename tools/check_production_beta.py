@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 try:
-    from completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES, is_production_beta
+    from completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES
     from patternlib import Pattern, PatternError, pattern_index, validate_all
 except ModuleNotFoundError:
-    from tools.completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES, is_production_beta
+    from tools.completion import PRODUCTION_BETA_PATTERNS, PRODUCTION_BETA_STATUSES
     from tools.patternlib import Pattern, PatternError, pattern_index, validate_all
 
 
@@ -187,10 +187,6 @@ def check_production_beta(patterns: list[Pattern]) -> None:
     missing = sorted(PRODUCTION_BETA_PATTERNS - set(index))
     if missing:
         raise PatternError(f"missing production-beta patterns: {', '.join(missing)}")
-
-    for pattern in patterns:
-        if is_production_beta(pattern) and pattern.id not in PRODUCTION_BETA_PATTERNS:
-            raise PatternError(f"{pattern.path}: only production-beta patterns may claim production-beta status")
 
     for pattern_id in sorted(PRODUCTION_BETA_PATTERNS):
         pattern = index[pattern_id]

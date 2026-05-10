@@ -24,6 +24,7 @@ Use UV for Python commands:
 uv run python tools/validate_patterns.py
 uv run python tools/check_composition_rules.py
 uv run python tools/check_production_beta.py
+uv run python tools/check_stable_tech1.py
 uv run python tools/render_index.py --check
 uv run python tools/render_graph.py --check
 uv run python tools/render_completion.py --check

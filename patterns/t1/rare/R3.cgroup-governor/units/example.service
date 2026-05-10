@@ -1,7 +1,24 @@
 [Unit]
-Description=Muster example for Cgroup Governor
+Description=Muster cgroup governed workload example
 Documentation=file:README.md
+StartLimitIntervalSec=10m
+StartLimitBurst=3
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern R3.cgroup-governor'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/cgroup-governor.env
+ExecStart=/usr/local/lib/muster/cgroup-governed-run.sh --apply
+CPUQuota=50%
+MemoryMax=256M
+IOWeight=100
+Restart=on-failure
+RestartSec=30s
+RuntimeDirectory=muster
+StateDirectory=muster/cgroup-governor
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster/cgroup-governor

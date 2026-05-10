@@ -1,7 +1,17 @@
 [Unit]
-Description=Muster example for Temporal Sheaf
+Description=Muster temporal sheaf obligation tracker example
 Documentation=file:README.md
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern M5.temporal-sheaf'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/temporal-sheaf.env
+ExecStart=/usr/local/lib/muster/temporal-sheaf-run.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/temporal-sheaf
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster/temporal-sheaf

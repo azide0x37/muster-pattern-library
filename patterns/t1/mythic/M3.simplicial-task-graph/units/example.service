@@ -1,7 +1,17 @@
 [Unit]
-Description=Muster example for Simplicial Task Graph
+Description=Muster simplicial task graph evaluator example
 Documentation=file:README.md
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo muster pattern M3.simplicial-task-graph'
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/simplicial-task-graph.env
+ExecStart=/usr/local/lib/muster/task-graph-evaluate.sh --apply
+RuntimeDirectory=muster
+StateDirectory=muster/task-graph
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/muster /var/lib/muster/task-graph

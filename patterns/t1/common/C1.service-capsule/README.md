@@ -27,7 +27,7 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
+- `units/example.service` is a reviewed systemd service artifact.
 - `scripts/install.sh` documents the installation boundary.
 - `scripts/doctor.sh` checks local pattern files.
 - `examples/minimal/README.md` sketches a minimal usage.
@@ -58,4 +58,4 @@ Review users, paths, credentials, sockets, and device permissions before deployi
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable contract. Future variants can add workload-specific environment and readiness probes without changing the base service capsule shape.

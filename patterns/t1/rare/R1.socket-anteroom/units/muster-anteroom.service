@@ -1,8 +1,6 @@
 [Unit]
-Description=Muster socket anteroom service example
+Description=Muster socket anteroom responder
 Documentation=file:README.md
-Requires=muster-anteroom.socket
-After=muster-anteroom.socket
 
 [Service]
 Type=simple

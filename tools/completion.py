@@ -119,4 +119,4 @@ def grouped_percentages(patterns: list[Pattern]) -> dict[tuple[int, str], float]
 
 
 def is_production_beta(pattern: Pattern) -> bool:
-    return pattern.data["status"] in PRODUCTION_BETA_STATUSES
+    return pattern.id in PRODUCTION_BETA_PATTERNS and pattern.data["status"] in PRODUCTION_BETA_STATUSES

@@ -16,7 +16,10 @@ composes_with:
 artifacts:
   units:
     - units/example.service
+    - units/muster-anteroom.socket
+    - units/muster-anteroom.service
   scripts:
+    - scripts/socket-anteroom-serve.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -24,6 +27,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: stable
+  docs: stable
+  tests: stable

@@ -17,6 +17,7 @@ artifacts:
   units:
     - units/example.service
   scripts:
+    - scripts/cgroup-governed-run.sh
     - scripts/install.sh
     - scripts/doctor.sh
   tests:
@@ -24,6 +25,6 @@ artifacts:
   examples:
     - examples/minimal/README.md
 status:
-  implementation: draft
-  docs: draft
-  tests: draft
+  implementation: stable
+  docs: stable
+  tests: stable

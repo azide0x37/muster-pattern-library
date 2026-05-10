@@ -14,7 +14,7 @@ Do not use this where ordinary target dependencies and health checks explain eno
 
 ## System shape
 
-A small set of systemd-facing artifacts plus scripts and examples document the operational boundary.
+Practical kernel: name the required faces of a task and report which ones are missing. Minimum useful implementation: `scripts/task-graph-evaluate.sh` compares required faces with present faces and records an explanation. Full speculative version: derived dependency shapes across many services. De-mythicize it as explainable readiness checking.
 
 ## Subpatterns
 
@@ -23,22 +23,23 @@ None.
 ## Files
 
 - `manifest.yaml` declares the pattern contract.
-- `units/example.service` is a placeholder systemd artifact to adapt.
-- `scripts/install.sh` documents the installation boundary.
-- `scripts/doctor.sh` checks local pattern files.
+- `units/example.service` runs the task graph evaluator.
+- `scripts/task-graph-evaluate.sh` records missing dependency faces.
+- `scripts/install.sh` installs reviewed artifacts in dry-run or staged-root mode.
+- `scripts/doctor.sh` checks the unit and proves a complete mocked graph.
 - `examples/minimal/README.md` sketches a minimal usage.
 
 ## Installation
 
-Review the manifest, adapt the unit and scripts to the target host, then copy only the reviewed artifacts into the systemd-managed location for that machine.
+Run `scripts/install.sh` to inspect the dry-run copy plan. Use `MUSTER_ROOT=/tmp/root scripts/install.sh --apply` for a staged-root install.
 
 ## Verification
 
-Run `scripts/doctor.sh`, validate the repository, and then prove the service behavior on a disposable or mocked target before using real hardware.
+Run `scripts/doctor.sh`. The doctor runs a complete mock graph and verifies `simplicial-task-graph.json`.
 
 ## Failure modes
 
-Expected failures should leave inspectable logs, status files, or failed artifacts.
+Missing faces degrade the graph and must be listed in status output rather than hidden behind a generic failure.
 
 ## Rollback
 
@@ -50,4 +51,4 @@ Review users, paths, credentials, sockets, and device permissions before deployi
 
 ## Future work
 
-Replace placeholders with hardware-specific checks and add integration tests as the pattern matures.
+No known blocker for the stable minimal kernel. Future work is deriving faces from real units and target dependencies.

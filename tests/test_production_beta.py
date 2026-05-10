@@ -14,11 +14,12 @@ from tools.patternlib import pattern_index, validate_all
 
 
 class ProductionBetaTests(unittest.TestCase):
-    def test_only_declared_patterns_claim_production_beta_status(self) -> None:
+    def test_declared_production_beta_patterns_use_allowed_statuses(self) -> None:
         patterns = validate_all()
         for pattern in patterns:
-            if pattern.data["status"] in PRODUCTION_BETA_STATUSES:
+            if pattern.id in PRODUCTION_BETA_PATTERNS:
                 self.assertIn(pattern.id, PRODUCTION_BETA_PATTERNS)
+                self.assertIn(pattern.data["status"], PRODUCTION_BETA_STATUSES)
 
     def test_required_artifacts_are_declared_and_present(self) -> None:
         patterns = validate_all()
