@@ -16,6 +16,7 @@ class PatternInventoryTests(unittest.TestCase):
         self.assertIn("T2R4.device-triggered-conveyor", ids)
         self.assertIn("C6.lifecycle-capsule", ids)
         self.assertIn("T2R5.signed-update-rail", ids)
+        self.assertIn("T2R6.home-assistant-mqtt-bridge", ids)
 
 
 if __name__ == "__main__":

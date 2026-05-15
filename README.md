@@ -43,4 +43,4 @@ The first milestone is a complete, machine-checkable scaffold for the planned Mu
 `docs/index.md` and `docs/pattern-graph.md` are generated from manifests. Do not hand-edit them.
 `docs/completion.md` is also generated and reports maturity from manifest status fields.
 
-`T2R4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances. `C6.lifecycle-capsule` and `T2R5.signed-update-rail` capture the core install, doctor, update, rollback, and clean-uninstall lifecycle.
+`T2R4.device-triggered-conveyor` is the first production-beta rare pattern for device-event ingest appliances. `C6.lifecycle-capsule` and `T2R5.signed-update-rail` capture the core install, doctor, update, rollback, and clean-uninstall lifecycle. `T2R6.home-assistant-mqtt-bridge` adds a mockable Home Assistant MQTT discovery, state, and control bridge.

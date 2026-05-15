@@ -1,0 +1,18 @@
+[Unit]
+Description=Muster Home Assistant MQTT bridge
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=muster
+Group=muster
+EnvironmentFile=-/etc/muster/home-assistant-mqtt-bridge.env
+ExecStart=/usr/local/lib/muster/home-assistant-mqtt-bridge/ha-mqtt-bridge.sh --once --apply
+StateDirectory=muster/home-assistant-mqtt-bridge
+RuntimeDirectory=muster/home-assistant-mqtt-bridge
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/run/muster/home-assistant-mqtt-bridge /var/lib/muster/home-assistant-mqtt-bridge

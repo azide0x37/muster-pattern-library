@@ -132,6 +132,16 @@ REQUIRED_ARTIFACTS = {
         "scripts/uninstall.sh",
         "examples/minimal/README.md",
     },
+    "T2R6.home-assistant-mqtt-bridge": {
+        "units/muster-ha-mqtt-bridge.service",
+        "units/muster-ha-mqtt-bridge.timer",
+        "scripts/ha-mqtt-bridge.sh",
+        "scripts/install.sh",
+        "scripts/doctor.sh",
+        "scripts/rollback.sh",
+        "scripts/uninstall.sh",
+        "examples/minimal/README.md",
+    },
 }
 
 

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import re
+import shutil
 import subprocess
 import tempfile
 
@@ -47,6 +49,55 @@ def _check_scripts_executable(pattern: Pattern) -> None:
             raise PatternError(f"{path}: stable Tech 1 script must be executable")
 
 
+def _rewritten_unit(pattern: Pattern, unit: Path) -> str:
+    readme = pattern.path.parent / "README.md"
+    script_dir = pattern.path.parent / "scripts"
+    lines: list[str] = []
+    for line in unit.read_text().splitlines():
+        if line.startswith("Documentation="):
+            lines.append(f"Documentation=file:{readme}")
+            continue
+        if line.startswith("ExecStart=/"):
+            match = re.match(r"ExecStart=(?:[^ ]*/)?([^/ ]+)(.*)", line)
+            if match:
+                script = script_dir / match.group(1)
+                if script.exists():
+                    lines.append(f"ExecStart={script}{match.group(2)}")
+                    continue
+        lines.append(line)
+    return "\n".join(lines) + "\n"
+
+
+def _verify_units(pattern: Pattern, tmp: Path) -> None:
+    if shutil.which("systemd-analyze") is None:
+        return
+
+    units: list[Path] = []
+    for relpath in pattern.data["artifacts"].get("units", []):
+        unit = pattern.path.parent / relpath
+        if unit.suffix in {".automount", ".mount", ".path", ".service", ".socket", ".timer"}:
+            units.append(unit)
+    if not units:
+        return
+
+    verify_units: list[str] = []
+    for unit in units:
+        rewritten = tmp / unit.name
+        rewritten.write_text(_rewritten_unit(pattern, unit))
+        verify_units.append(str(rewritten))
+
+    result = subprocess.run(
+        ["systemd-analyze", "verify", *verify_units],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        timeout=20,
+    )
+    if result.returncode != 0:
+        output = (result.stdout + result.stderr).strip()
+        raise PatternError(f"{pattern.path}: stable Tech 1 unit verification failed: {output}")
+
+
 def _run_doctor(pattern: Pattern) -> None:
     doctor = pattern.path.parent / "scripts" / "doctor.sh"
     if not doctor.exists():
@@ -55,8 +106,16 @@ def _run_doctor(pattern: Pattern) -> None:
         raise PatternError(f"{doctor}: stable Tech 1 doctor must be executable")
 
     with tempfile.TemporaryDirectory(prefix=f"muster-{pattern.id}-") as tmp:
+        tmp_path = Path(tmp)
+        _verify_units(pattern, tmp_path)
+        fake_bin = tmp_path / "bin"
+        fake_bin.mkdir()
+        fake_systemd_analyze = fake_bin / "systemd-analyze"
+        fake_systemd_analyze.write_text("#!/usr/bin/env sh\nexit 0\n")
+        fake_systemd_analyze.chmod(0o755)
         env = os.environ.copy()
         env["MUSTER_MOCK_ROOT"] = tmp
+        env["PATH"] = f"{fake_bin}{os.pathsep}{env.get('PATH', '')}"
         result = subprocess.run(
             [str(doctor)],
             cwd=ROOT,
