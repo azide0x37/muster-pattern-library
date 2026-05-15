@@ -57,8 +57,8 @@ def _rewritten_unit(pattern: Pattern, unit: Path) -> str:
         if line.startswith("Documentation="):
             lines.append(f"Documentation=file:{readme}")
             continue
-        if line.startswith("ExecStart=/usr/local/lib/muster/"):
-            match = re.match(r"ExecStart=/usr/local/lib/muster/([^ ]+)(.*)", line)
+        if line.startswith("ExecStart=/"):
+            match = re.match(r"ExecStart=(?:[^ ]*/)?([^/ ]+)(.*)", line)
             if match:
                 script = script_dir / match.group(1)
                 if script.exists():
