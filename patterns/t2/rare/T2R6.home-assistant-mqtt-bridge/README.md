@@ -58,6 +58,10 @@ Run `scripts/rollback.sh --apply` with `MUSTER_ROOT` for a staged root or as roo
 
 Broker credentials are intentionally outside the repository. Keep command topics narrow, map each command to an explicit local action, and do not enable real broker publishing until the deployment has credential storage, TLS, and command authorization reviewed.
 
+## Telemetry budget
+
+Telemetry collectors must be bounded, cheap, and stale-aware. Do not recursively scan large remote mounts, slow NAS trees, or unbounded directories during a periodic bridge tick. Publish counts, sampled entries, filesystem accounting, or precomputed state-ledger facts instead, and make partial snapshots prefer the currently active appliance lifecycle over older retained handoff state.
+
 ## Future work
 
 Add a broker adapter with TLS-only defaults, support more entity classes, and emit state-ledger events for every discovery, state, control, and rollback action.
