@@ -17,8 +17,27 @@ test -f "$pattern_dir/units/example.service"
 test -f "$pattern_dir/units/example.timer"
 test -x "$pattern_dir/scripts/persistent-tick-run.sh"
 
+mock_root=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-c2-doctor}
+mkdir -p "$mock_root/run/muster" "$mock_root/var/lib/muster/persistent-tick"
+
 if command -v systemd-analyze >/dev/null 2>&1; then
-  systemd-analyze verify "$pattern_dir/units/example.service" "$pattern_dir/units/example.timer"
+  verify_service="$mock_root/example.service"
+  verify_timer="$mock_root/example.timer"
+  awk \
+    -v readme="$pattern_dir/README.md" \
+    -v runner="$pattern_dir/scripts/persistent-tick-run.sh" \
+    '
+      /^Documentation=/ { print "Documentation=file:" readme; next }
+      /^ExecStart=/ { print "ExecStart=" runner " --apply"; next }
+      { print }
+    ' "$pattern_dir/units/example.service" > "$verify_service"
+  awk \
+    -v readme="$pattern_dir/README.md" \
+    '
+      /^Documentation=/ { print "Documentation=file:" readme; next }
+      { print }
+    ' "$pattern_dir/units/example.timer" > "$verify_timer"
+  systemd-analyze verify "$verify_service" "$verify_timer"
 elif [ "$strict" -eq 1 ]; then
   printf '%s\n' "systemd-analyze is required in --strict mode" >&2
   exit 1
@@ -26,8 +45,6 @@ else
   printf '%s\n' "warn: systemd-analyze not found; skipped unit verification"
 fi
 
-mock_root=${MUSTER_MOCK_ROOT:-${TMPDIR:-/tmp}/muster-c2-doctor}
-mkdir -p "$mock_root/run/muster" "$mock_root/var/lib/muster/persistent-tick"
 MUSTER_MOCK_ROOT="$mock_root" "$pattern_dir/scripts/persistent-tick-run.sh" >/dev/null
 test -d "$mock_root/var/lib/muster/persistent-tick"
 test -s "$mock_root/run/muster/persistent-tick.json"
