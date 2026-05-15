@@ -30,6 +30,7 @@ graph TD
   T2R3["T2R3.edge-control-plane<br/>Edge Control Plane"]
   T2R4["T2R4.device-triggered-conveyor<br/>Device-Triggered Conveyor"]
   T2R5["T2R5.signed-update-rail<br/>Signed Update Rail"]
+  T2R6["T2R6.home-assistant-mqtt-bridge<br/>Home Assistant MQTT Bridge"]
   T3C1["T3C1.edge-appliance-bundle<br/>Edge Appliance Bundle"]
   T3M1["T3M1.machine-priest<br/>Machine Priest"]
   T3M2["T3M2.ritualized-recovery-loop<br/>Ritualized Recovery Loop"]
@@ -80,6 +81,12 @@ graph TD
   C5 --> T2R5
   C6 --> T2R5
   R4 --> T2R5
+  C1 --> T2R6
+  C2 --> T2R6
+  C5 --> T2R6
+  C6 --> T2R6
+  R4 --> T2R6
+  T2C5 --> T2R6
   T2C1 --> T3C1
   T2C3 --> T3C1
   T2C4 --> T3C1

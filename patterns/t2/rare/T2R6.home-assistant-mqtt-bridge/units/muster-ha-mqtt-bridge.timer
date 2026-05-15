@@ -1,0 +1,12 @@
+[Unit]
+Description=Muster Home Assistant MQTT bridge timer
+
+[Timer]
+OnBootSec=45s
+OnUnitActiveSec=30s
+RandomizedDelaySec=5s
+Persistent=true
+Unit=muster-ha-mqtt-bridge.service
+
+[Install]
+WantedBy=timers.target

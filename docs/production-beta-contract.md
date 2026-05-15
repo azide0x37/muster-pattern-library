@@ -64,3 +64,9 @@ Network storage must not block boot. Mounts use lazy materialization, bounded ti
 A physical device event must hand off to systemd through udev `SYSTEMD_WANTS`; udev must not run the ingest itself.
 
 Before ingest starts, the job must prove the destination capability and confirm enough hot-storage capacity. If capacity is temporarily unavailable because the hot/cold conveyor is still flushing, the job records `waiting_for_capacity`, runs a drain command or waits for the drain timer, and continues when capacity becomes available. If the timeout expires, it exits as a temporary failure and leaves inspectable state.
+
+## Home Assistant MQTT Contract
+
+Home Assistant MQTT bridge patterns must be broker-optional during validation. Discovery, state, and control traffic are first represented as local outbox and inbox files so a doctor or unit test can prove topic names, payloads, and command bounds without network credentials.
+
+Control payloads must be narrow and explicitly accepted. The beta bridge accepts only tokenized entity names and `ON` or `OFF` commands until a deployment adds reviewed broker credentials, TLS, and command authorization.

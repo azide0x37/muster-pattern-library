@@ -1,0 +1,58 @@
+id: T2R6.home-assistant-mqtt-bridge
+name: Home Assistant MQTT Bridge
+tech_level: 2
+rarity: rare
+mrl: 5
+summary: >
+  Publish Home Assistant MQTT discovery payloads, bridge appliance state into MQTT topics, and accept bounded control commands through a mockable local inbox before a real broker is enabled.
+provides:
+  - home_assistant_mqtt_autodiscovery
+  - appliance_mqtt_telemetry
+  - scoped_mqtt_controls
+requires:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - C6.lifecycle-capsule
+  - R4.state-ledger
+  - T2C5.local-sidecar-bridge
+subpatterns:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - C6.lifecycle-capsule
+  - R4.state-ledger
+  - T2C5.local-sidecar-bridge
+composes_with:
+  - T2R4.device-triggered-conveyor
+  - T3R1.multi-resource-orchestrator
+lifecycle:
+  managed: true
+  install_modes:
+    - dry_run
+    - staged_root
+    - apply
+  doctor_modes:
+    - mock
+    - staged_root
+  rollback: artifact_generation
+  uninstall: artifacts_only
+  update: none
+artifacts:
+  units:
+    - units/muster-ha-mqtt-bridge.service
+    - units/muster-ha-mqtt-bridge.timer
+  scripts:
+    - scripts/ha-mqtt-bridge.sh
+    - scripts/install.sh
+    - scripts/doctor.sh
+    - scripts/rollback.sh
+    - scripts/uninstall.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: usable
+  docs: reviewed
+  tests: reviewed
