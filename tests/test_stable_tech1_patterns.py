@@ -28,6 +28,33 @@ class StableTech1PatternTests(unittest.TestCase):
     def test_stable_tech1_gate_passes(self) -> None:
         check_stable_tech1(validate_all())
 
+    def test_service_capsule_doctor_verifies_staged_unit(self) -> None:
+        pattern = ROOT / "patterns/t1/common/C1.service-capsule"
+        doctor = pattern / "scripts/doctor.sh"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bin_dir = root / "bin"
+            bin_dir.mkdir()
+            fake_systemd_analyze = bin_dir / "systemd-analyze"
+            fake_systemd_analyze.write_text(
+                "#!/usr/bin/env sh\n"
+                "set -eu\n"
+                "test \"$1\" = verify\n"
+                "unit=\"$2\"\n"
+                "! grep -q 'Documentation=file:README.md' \"$unit\"\n"
+                "! grep -q '/usr/local/lib/muster/service-capsule-run.sh' \"$unit\"\n"
+                "grep -q 'Documentation=file:/.*/README.md' \"$unit\"\n"
+                "grep -q '/scripts/service-capsule-run.sh --apply' \"$unit\"\n"
+            )
+            fake_systemd_analyze.chmod(0o755)
+            run_script(
+                doctor,
+                env={
+                    "MUSTER_MOCK_ROOT": str(root / "mock"),
+                    "PATH": f"{bin_dir}{os.pathsep}{os.environ['PATH']}",
+                },
+            )
+
     def test_dropfolder_processes_and_records_failures(self) -> None:
         pattern = ROOT / "patterns/t1/common/C3.dropfolder-trigger"
         script = pattern / "scripts/dropfolder-process.sh"
