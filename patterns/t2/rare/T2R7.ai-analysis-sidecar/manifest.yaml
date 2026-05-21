@@ -1,0 +1,50 @@
+id: T2R7.ai-analysis-sidecar
+name: AI Analysis Sidecar
+tech_level: 2
+rarity: rare
+mrl: 5
+summary: >
+  Run opt-in AI analysis against bounded local appliance snapshots through an asynchronous systemd sidecar that writes local summaries and fails back to deterministic state.
+provides:
+  - ai_snapshot_analysis
+  - asynchronous_external_api_worker
+  - local_analysis_artifact
+requires:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - T2C5.local-sidecar-bridge
+subpatterns:
+  - C1.service-capsule
+  - C2.persistent-tick
+  - C5.failure-ratchet
+  - T2C5.local-sidecar-bridge
+composes_with:
+  - T2R3.edge-control-plane
+  - T2R6.home-assistant-mqtt-bridge
+lifecycle:
+  managed: false
+  install_modes:
+    - dry_run
+    - staged_root
+    - apply
+  doctor_modes:
+    - mock
+    - staged_root
+  rollback: documented
+  uninstall: documented
+  update: none
+artifacts:
+  units:
+    - units/example.service
+    - units/example.timer
+  scripts:
+    - scripts/doctor.sh
+  tests:
+    - tests/test_manifest.py
+  examples:
+    - examples/minimal/README.md
+status:
+  implementation: draft
+  docs: draft
+  tests: draft

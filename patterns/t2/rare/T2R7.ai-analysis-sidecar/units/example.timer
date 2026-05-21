@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh AI analysis sidecar output
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+Unit=example.service
+Persistent=true
+RandomizedDelaySec=2min
+
+[Install]
+WantedBy=timers.target

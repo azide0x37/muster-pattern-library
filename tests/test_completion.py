@@ -18,8 +18,8 @@ from tools.patternlib import validate_all
 class CompletionTests(unittest.TestCase):
     def test_overall_completion_reflects_flagship_status(self) -> None:
         patterns = validate_all()
-        self.assertEqual(len(patterns), 34)
-        self.assertEqual(overall_percent(patterns), 75.5)
+        self.assertEqual(len(patterns), 35)
+        self.assertEqual(overall_percent(patterns), 74.3)
 
     def test_grouped_completion_scores(self) -> None:
         groups = grouped_percentages(validate_all())
@@ -27,7 +27,7 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(groups[(1, "rare")], 100.0)
         self.assertEqual(groups[(1, "mythic")], 100.0)
         self.assertEqual(groups[(2, "common")], 68.0)
-        self.assertEqual(groups[(2, "rare")], 58.7)
+        self.assertEqual(groups[(2, "rare")], 55.1)
         self.assertEqual(groups[(3, "common")], 76.7)
 
     def test_flagship_rows_are_production_beta(self) -> None:
