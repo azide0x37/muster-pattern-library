@@ -1,0 +1,21 @@
+[Unit]
+Description=Run AI analysis sidecar for a local appliance snapshot
+Documentation=file:/opt/example/current/README.md
+After=network-online.target local-fs.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/example/example.env
+EnvironmentFile=-/etc/example/example.ai.env
+ExecStart=/opt/example/current/bin/example-ai-analysis --apply
+TimeoutStartSec=2min
+RuntimeDirectory=example
+RuntimeDirectoryPreserve=yes
+StateDirectory=example
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/example /var/lib/example
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX

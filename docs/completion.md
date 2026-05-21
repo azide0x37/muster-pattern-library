@@ -2,7 +2,7 @@
 
 Generated from manifest `status` fields.
 
-Overall maturity: **75.5%**
+Overall maturity: **74.3%**
 
 ## Group Summary
 
@@ -12,7 +12,7 @@ Overall maturity: **75.5%**
 | Tech 1 Rare | 5 | 100.0% |
 | Tech 1 Mythic | 5 | 100.0% |
 | Tech 2 Common | 5 | 68.0% |
-| Tech 2 Rare | 6 | 58.7% |
+| Tech 2 Rare | 7 | 55.1% |
 | Tech 3 Common | 1 | 76.7% |
 | Tech 3 Rare | 1 | 33.0% |
 | Tech 3 Mythic | 5 | 33.0% |
@@ -91,6 +91,7 @@ Overall maturity: **75.5%**
 | `T2R4.device-triggered-conveyor` | Device-Triggered Conveyor | stable/stable/stable | 100.0% |
 | `T2R5.signed-update-rail` | Signed Update Rail | usable/reviewed/reviewed | 76.7% |
 | `T2R6.home-assistant-mqtt-bridge` | Home Assistant MQTT Bridge | usable/reviewed/reviewed | 76.7% |
+| `T2R7.ai-analysis-sidecar` | AI Analysis Sidecar | draft/draft/draft | 33.0% |
 | `T3C1.edge-appliance-bundle` | Edge Appliance Bundle | usable/reviewed/reviewed | 76.7% |
 | `T3M1.machine-priest` | Machine Priest | draft/draft/draft | 33.0% |
 | `T3M2.ritualized-recovery-loop` | Ritualized Recovery Loop | draft/draft/draft | 33.0% |
